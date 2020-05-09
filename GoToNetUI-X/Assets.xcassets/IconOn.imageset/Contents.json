@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "arrange-bring-to-front.png",
+      "idiom" : "mac"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "localizable" : true,
+    "template-rendering-intent" : "template"
+  }
+}

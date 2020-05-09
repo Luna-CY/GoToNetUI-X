@@ -11,29 +11,87 @@ import SwiftUI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    var window: NSWindow!
-
-
+    
+    var statusBarItem: NSStatusItem!
+    
+    @IBOutlet weak var mainMenu: NSMenu!
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
-
-        // Create the window and set the content view. 
-        window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered, defer: false)
-        window.center()
-        window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
-        window.makeKeyAndOrderFront(nil)
+        self.registerGlobalConfig()
+        
+        // Create the status item
+        self.statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        self.statusBarItem.menu = mainMenu
+        
+        if let button = self.statusBarItem.button {
+            button.image = NSImage(named: "IconOff")
+        }
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    
+    @IBAction func quitAppItem(_ sender: Any) {
+        NSApplication.shared.terminate(self)
     }
-
-
+    
+    
+    @IBOutlet weak var startServiceItem: NSMenuItem!
+    @IBAction func startServiceAction(_ sender: Any) {
+        self.startServiceItem.isEnabled = false
+        self.startServiceItem.isHidden = true
+        
+        self.closeServiceItem.isEnabled = true
+        self.closeServiceItem.isHidden = false
+        
+        if let button = self.statusBarItem.button {
+            button.image = NSImage(named: "IconOn")
+        }
+    }
+    
+    
+    @IBOutlet weak var closeServiceItem: NSMenuItem!
+    @IBAction func closeServiceAction(_ sender: Any) {
+        self.closeServiceItem.isEnabled = false
+        self.closeServiceItem.isHidden = true
+        
+        self.startServiceItem.isEnabled = true
+        self.startServiceItem.isHidden = false
+        
+        if let button = self.statusBarItem.button {
+            button.image = NSImage(named: "IconOff")
+        }
+    }
+    
+    @IBOutlet weak var pacModeItem: NSMenuItem!
+    @IBAction func pacModeAction(_ sender: Any) {
+        self.globalModeItem.state = .off
+        self.manualModeItem.state = .off
+        
+        self.pacModeItem.state = .on
+    }
+    
+    @IBOutlet weak var globalModeItem: NSMenuItem!
+    @IBAction func globalModeAction(_ sender: Any) {
+        self.pacModeItem.state = .off
+        self.manualModeItem.state = .off
+        
+        self.globalModeItem.state = .on
+    }
+    
+    @IBOutlet weak var manualModeItem: NSMenuItem!
+    @IBAction func manualModeAction(_ sender: Any) {
+        self.pacModeItem.state = .off
+        self.globalModeItem.state = .off
+        
+        self.manualModeItem.state = .on
+    }
+    
+    func registerGlobalConfig() {
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: [
+            "isStarted": false,
+            "runningMode": "pac",
+            "selectedServerId": "",
+            "localSocketPort": NSNumber(value: 1280 as UInt16)
+        ])
+    }
 }
 

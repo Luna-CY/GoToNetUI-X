@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14814" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14814"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +673,83 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="GoToNetUI_X" customModuleProvider="target">
+                    <connections>
+                        <outlet property="MainMenu" destination="mtd-gT-MVg" id="gvF-KY-vAs"/>
+                        <outlet property="closeServiceItem" destination="yvj-bX-y2E" id="ldD-AR-Jpy"/>
+                        <outlet property="globalModeItem" destination="83z-N4-lfJ" id="JWb-bl-7ic"/>
+                        <outlet property="manualModeItem" destination="IHC-DT-uJD" id="cqR-PJ-HAj"/>
+                        <outlet property="pacModeItem" destination="eWS-eC-yWr" id="Cnh-kz-Qxh"/>
+                        <outlet property="startServiceItem" destination="aZA-Dd-FLc" id="dzs-HI-C6I"/>
+                    </connections>
+                </customObject>
+                <menu id="mtd-gT-MVg">
+                    <items>
+                        <menuItem title="启动服务" keyEquivalent="r" id="aZA-Dd-FLc">
+                            <connections>
+                                <action selector="startServiceAction:" target="Voe-Tx-rLC" id="c2f-09-NQ9"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="关闭服务" hidden="YES" keyEquivalent="c" id="yvj-bX-y2E">
+                            <connections>
+                                <action selector="closeServiceAction:" target="Voe-Tx-rLC" id="gBS-rS-f1n"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="097-7W-pGj"/>
+                        <menuItem title="运行模式" id="Ai7-2g-ekd">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="运行模式" id="KnS-nQ-vnZ">
+                                <items>
+                                    <menuItem title="PAC自动模式" state="on" id="eWS-eC-yWr">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="pacModeAction:" target="Voe-Tx-rLC" id="J2c-CB-LJ2"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="全局模式" id="83z-N4-lfJ">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="globalModeAction:" target="Voe-Tx-rLC" id="Loq-vU-lSB"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="手动模式" id="IHC-DT-uJD">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="manualModeAction:" target="Voe-Tx-rLC" id="NBG-0i-lXv"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </menuItem>
+                        <menuItem title="服务器列表" id="Fbx-Bp-pKe">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="服务器列表" id="mvG-ho-gJB">
+                                <items>
+                                    <menuItem title="编辑服务器配置" id="SG0-M6-zBT">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="D6e-Zh-VWQ"/>
+                                </items>
+                            </menu>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="cSs-AU-emR"/>
+                        <menuItem title="日志控制台" id="gYh-sn-2JK">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="检查更新" id="ewD-En-CJp">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="关于本软件" id="9Jj-hV-bSB">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="HMr-nV-FUm"/>
+                        <menuItem title="退出" keyEquivalent="q" id="KJl-Iw-lyG">
+                            <connections>
+                                <action selector="quitAppItem:" target="Voe-Tx-rLC" id="peU-LU-3cd"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
