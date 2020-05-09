@@ -700,20 +700,17 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="运行模式" id="KnS-nQ-vnZ">
                                 <items>
-                                    <menuItem title="PAC自动模式" state="on" id="eWS-eC-yWr">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menuItem title="PAC自动模式" state="on" keyEquivalent="a" id="eWS-eC-yWr">
                                         <connections>
                                             <action selector="pacModeAction:" target="Voe-Tx-rLC" id="J2c-CB-LJ2"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="全局模式" id="83z-N4-lfJ">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menuItem title="全局模式" keyEquivalent="g" id="83z-N4-lfJ">
                                         <connections>
                                             <action selector="globalModeAction:" target="Voe-Tx-rLC" id="Loq-vU-lSB"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="手动模式" id="IHC-DT-uJD">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                    <menuItem title="手动模式" keyEquivalent="m" id="IHC-DT-uJD">
                                         <connections>
                                             <action selector="manualModeAction:" target="Voe-Tx-rLC" id="NBG-0i-lXv"/>
                                         </connections>
@@ -725,9 +722,7 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="服务器列表" id="mvG-ho-gJB">
                                 <items>
-                                    <menuItem title="编辑服务器配置" id="SG0-M6-zBT">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
+                                    <menuItem title="编辑服务器配置" keyEquivalent="s" id="SG0-M6-zBT"/>
                                     <menuItem isSeparatorItem="YES" id="D6e-Zh-VWQ"/>
                                 </items>
                             </menu>

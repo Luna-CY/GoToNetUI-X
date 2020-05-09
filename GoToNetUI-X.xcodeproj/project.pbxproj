@@ -13,6 +13,9 @@
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
 		BDB27CFF2466C45500DAD8C9 /* ServerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27CFE2466C45500DAD8C9 /* ServerConfigView.swift */; };
 		BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D002466C4C000DAD8C9 /* constants.swift */; };
+		F87F29C52466EFB30054EF26 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F29C42466EFB30054EF26 /* utils.swift */; };
+		F8A294C824670C8700C905D7 /* install-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294C624670C8700C905D7 /* install-cli-go-to-net.sh */; };
+		F8A294C924670C8700C905D7 /* cli-go-to-net in Resources */ = {isa = PBXBuildFile; fileRef = F8A294C724670C8700C905D7 /* cli-go-to-net */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,9 @@
 		BDB27CD42466968F00DAD8C9 /* GoToNetUI_X.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoToNetUI_X.entitlements; sourceTree = "<group>"; };
 		BDB27CFE2466C45500DAD8C9 /* ServerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfigView.swift; sourceTree = "<group>"; };
 		BDB27D002466C4C000DAD8C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
+		F87F29C42466EFB30054EF26 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		F8A294C624670C8700C905D7 /* install-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = "install-cli-go-to-net.sh"; path = "../go-to-net/install-cli-go-to-net.sh"; sourceTree = "<group>"; };
+		F8A294C724670C8700C905D7 /* cli-go-to-net */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = "cli-go-to-net"; path = "../go-to-net/cli-go-to-net"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,7 @@
 		BDB27CC62466968D00DAD8C9 /* GoToNetUI-X */ = {
 			isa = PBXGroup;
 			children = (
+				F8A294CA24670CA300C905D7 /* Resources */,
 				BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */,
 				BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */,
 				BDB27CD02466968F00DAD8C9 /* Main.storyboard */,
@@ -65,6 +72,7 @@
 				BDB27CCD2466968F00DAD8C9 /* Preview Content */,
 				BDB27CFE2466C45500DAD8C9 /* ServerConfigView.swift */,
 				BDB27D002466C4C000DAD8C9 /* constants.swift */,
+				F87F29C42466EFB30054EF26 /* utils.swift */,
 			);
 			path = "GoToNetUI-X";
 			sourceTree = "<group>";
@@ -75,6 +83,23 @@
 				BDB27CCE2466968F00DAD8C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F8A294CA24670CA300C905D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F8A294CB24670CB200C905D7 /* cli-go-to-net */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F8A294CB24670CB200C905D7 /* cli-go-to-net */ = {
+			isa = PBXGroup;
+			children = (
+				F8A294C724670C8700C905D7 /* cli-go-to-net */,
+				F8A294C624670C8700C905D7 /* install-cli-go-to-net.sh */,
+			);
+			path = "cli-go-to-net";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +128,9 @@
 		BDB27CBC2466968D00DAD8C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Luna;
@@ -135,6 +163,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8A294C824670C8700C905D7 /* install-cli-go-to-net.sh in Resources */,
+				F8A294C924670C8700C905D7 /* cli-go-to-net in Resources */,
 				BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */,
 				BDB27CCF2466968F00DAD8C9 /* Preview Assets.xcassets in Resources */,
 				BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */,
@@ -151,6 +181,7 @@
 				BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */,
 				BDB27CFF2466C45500DAD8C9 /* ServerConfigView.swift in Sources */,
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
+				F87F29C52466EFB30054EF26 /* utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

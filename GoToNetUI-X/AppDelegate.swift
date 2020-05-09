@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var mainMenu: NSMenu!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        self.initTools()
         self.registerGlobalConfig()
         
         // Create the status item
@@ -82,6 +83,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.globalModeItem.state = .off
         
         self.manualModeItem.state = .on
+    }
+    
+    func initTools() {
+        installCliCmd()
     }
     
     func registerGlobalConfig() {
