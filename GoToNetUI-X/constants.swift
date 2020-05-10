@@ -8,9 +8,9 @@
 
 let AppName = "GoToNetUI-X"
 let SupportDir = "/Library/Application Support/" + AppName + "/"
-let UserConfigDir = ".config/" + AppName + "/"
+let UserConfigDir = "/.config/" + AppName + "/"
 
 let LaunchAgentDir = "/Library/LaunchAgents/"
 let LaunchAgentCliCmdName = "xin.luna.cli-go-to-net.plist"
 
-let ServerConfigFilePath = UserConfigDir + "server-config.json"
+let ServerConfigFileName = "server-config.json"

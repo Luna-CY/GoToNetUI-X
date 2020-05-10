@@ -203,7 +203,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         defaults.register(defaults: [
             "isStarted": false,
             "runningMode": "manual",
-            "selectedServerId": "",
+            "selectedServerName": "",
         ])
     }
     
@@ -220,15 +220,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             submenu.removeItem(at: index)
         }
         
+        let selected = UserDefaults.standard.string(forKey: "selectedServerName")
+        
         let serverConfigList = ServerConfigManager.default.getServerConfigList()
-        for (key, _) in serverConfigList {
+        for (_, serverConfig) in serverConfigList {
             let item = NSMenuItem()
-            item.title = key
-            item.state = .on
+            item.title = serverConfig.name
+            item.state = selected == serverConfig.name ? .on : .off
             item.isEnabled = true
+            
+            item.action = #selector(AppDelegate.selectServer)
             
             submenu.insertItem(item, at: beginIndex)
         }
+    }
+    
+    @IBAction func selectServer(_ sender: NSMenuItem) {
+        UserDefaults.standard.set(sender.title, forKey: "selectedServerName")
+        
+        if !syncCliCmdService(action: "restart") {
+            UserDefaults.standard.set(false, forKey: "isStarted")
+            
+            self.closeServiceItem.isEnabled = false
+            self.closeServiceItem.isHidden = true
+            
+            self.startServiceItem.isEnabled = true
+            self.startServiceItem.isHidden = false
+            
+            if let button = self.statusBarItem.button {
+                button.image = NSImage(named: "IconOff")
+            }
+            
+            return
+        }
+        
+        sender.state = .on
     }
 }
 
