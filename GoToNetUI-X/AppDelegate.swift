@@ -16,8 +16,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var mainMenu: NSMenu!
     
+    /**
+     Main Func
+     */
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.initTools()
+        if !self.initTools() {
+            self.startServiceItem.isEnabled = false
+        }
         self.registerGlobalConfig()
         
         // Create the status item
@@ -29,13 +34,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func quitAppItem(_ sender: Any) {
+    /**
+     退出应用菜单项动作
+     */
+    @IBAction func quitAppAction(_ sender: Any) {
         NSApplication.shared.terminate(self)
     }
     
-    
+    /**
+     启动服务菜单项对象
+     */
     @IBOutlet weak var startServiceItem: NSMenuItem!
+    
+    /**
+     启动服务菜单项动作
+     */
     @IBAction func startServiceAction(_ sender: Any) {
+        if !syncCliCmdService() {
+            NSLog("启动服务失败")
+            
+            return
+        }
+        
         self.startServiceItem.isEnabled = false
         self.startServiceItem.isHidden = true
         
@@ -47,8 +67,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    
+    /**
+     关闭服务菜单项对象
+     */
     @IBOutlet weak var closeServiceItem: NSMenuItem!
+    
+    /**
+     关闭服务菜单项动作
+     */
     @IBAction func closeServiceAction(_ sender: Any) {
         self.closeServiceItem.isEnabled = false
         self.closeServiceItem.isHidden = true
@@ -61,7 +87,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    /**
+     切换为pac模式菜单项
+     */
     @IBOutlet weak var pacModeItem: NSMenuItem!
+    
+    /**
+     切换为pac模式菜单项动作
+     */
     @IBAction func pacModeAction(_ sender: Any) {
         self.globalModeItem.state = .off
         self.manualModeItem.state = .off
@@ -69,7 +102,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.pacModeItem.state = .on
     }
     
+    /**
+     切换为全局模式菜单项
+     */
     @IBOutlet weak var globalModeItem: NSMenuItem!
+    
+    /**
+     切换为全局模式菜单项动作
+     */
     @IBAction func globalModeAction(_ sender: Any) {
         self.pacModeItem.state = .off
         self.manualModeItem.state = .off
@@ -77,7 +117,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.globalModeItem.state = .on
     }
     
+    /**
+     切换为手动模式菜单项
+     */
     @IBOutlet weak var manualModeItem: NSMenuItem!
+    
+    /**
+     切换为手动模式菜单项动作
+     */
     @IBAction func manualModeAction(_ sender: Any) {
         self.pacModeItem.state = .off
         self.globalModeItem.state = .off
@@ -85,10 +132,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.manualModeItem.state = .on
     }
     
-    func initTools() {
-        installCliCmd()
+    /**
+     初始化命令行工具
+     */
+    func initTools() -> Bool {
+        if !installCliCmd() {
+            return false
+        }
+        
+        return true
     }
     
+    /**
+     注册全局配置字典
+     */
     func registerGlobalConfig() {
         let defaults = UserDefaults.standard
         defaults.register(defaults: [

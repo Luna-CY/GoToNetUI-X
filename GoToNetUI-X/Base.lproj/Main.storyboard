@@ -740,7 +740,7 @@
                         <menuItem isSeparatorItem="YES" id="HMr-nV-FUm"/>
                         <menuItem title="退出" keyEquivalent="q" id="KJl-Iw-lyG">
                             <connections>
-                                <action selector="quitAppItem:" target="Voe-Tx-rLC" id="peU-LU-3cd"/>
+                                <action selector="quitAppAction:" target="Voe-Tx-rLC" id="peU-LU-3cd"/>
                             </connections>
                         </menuItem>
                     </items>
