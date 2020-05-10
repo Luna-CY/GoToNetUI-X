@@ -12,3 +12,5 @@ let UserConfigDir = ".config/" + AppName + "/"
 
 let LaunchAgentDir = "/Library/LaunchAgents/"
 let LaunchAgentCliCmdName = "xin.luna.cli-go-to-net.plist"
+
+let ServerConfigFilePath = UserConfigDir + "server-config.json"

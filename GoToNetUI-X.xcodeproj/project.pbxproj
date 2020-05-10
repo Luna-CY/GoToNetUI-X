@@ -9,32 +9,32 @@
 /* Begin PBXBuildFile section */
 		BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */; };
 		BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */; };
-		BDB27CCF2466968F00DAD8C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CCE2466968F00DAD8C9 /* Preview Assets.xcassets */; };
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
-		BDB27CFF2466C45500DAD8C9 /* ServerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27CFE2466C45500DAD8C9 /* ServerConfigView.swift */; };
 		BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D002466C4C000DAD8C9 /* constants.swift */; };
 		F87F29C52466EFB30054EF26 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F29C42466EFB30054EF26 /* utils.swift */; };
 		F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */; };
 		F8A294CF2467B90D00C905D7 /* stop-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CD2467B90D00C905D7 /* stop-cli-go-to-net.sh */; };
 		F8A294D22467BE8800C905D7 /* install-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294D02467BE8700C905D7 /* install-cli-go-to-net.sh */; };
 		F8A294D32467BE8800C905D7 /* cli-go-to-net in Resources */ = {isa = PBXBuildFile; fileRef = F8A294D12467BE8800C905D7 /* cli-go-to-net */; };
+		F8A294DD2467EE1200C905D7 /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A294DC2467EE1200C905D7 /* ServerConfig.swift */; };
+		F8A294E02468005800C905D7 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A294DF2468005800C905D7 /* NetworkExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BDB27CC42466968D00DAD8C9 /* GoToNetUI-X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GoToNetUI-X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BDB27CCE2466968F00DAD8C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BDB27CD12466968F00DAD8C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BDB27CD32466968F00DAD8C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDB27CD42466968F00DAD8C9 /* GoToNetUI_X.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoToNetUI_X.entitlements; sourceTree = "<group>"; };
-		BDB27CFE2466C45500DAD8C9 /* ServerConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfigView.swift; sourceTree = "<group>"; };
 		BDB27D002466C4C000DAD8C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		F87F29C42466EFB30054EF26 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-cli-go-to-net.sh"; sourceTree = "<group>"; };
 		F8A294CD2467B90D00C905D7 /* stop-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "stop-cli-go-to-net.sh"; sourceTree = "<group>"; };
 		F8A294D02467BE8700C905D7 /* install-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-cli-go-to-net.sh"; sourceTree = "<group>"; };
 		F8A294D12467BE8800C905D7 /* cli-go-to-net */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "cli-go-to-net"; sourceTree = "<group>"; };
+		F8A294DC2467EE1200C905D7 /* ServerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
+		F8A294DF2468005800C905D7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8A294E02468005800C905D7 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +54,7 @@
 			children = (
 				BDB27CC62466968D00DAD8C9 /* GoToNetUI-X */,
 				BDB27CC52466968D00DAD8C9 /* Products */,
+				F8A294DE2468005800C905D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,20 +75,11 @@
 				BDB27CD02466968F00DAD8C9 /* Main.storyboard */,
 				BDB27CD32466968F00DAD8C9 /* Info.plist */,
 				BDB27CD42466968F00DAD8C9 /* GoToNetUI_X.entitlements */,
-				BDB27CCD2466968F00DAD8C9 /* Preview Content */,
-				BDB27CFE2466C45500DAD8C9 /* ServerConfigView.swift */,
 				BDB27D002466C4C000DAD8C9 /* constants.swift */,
 				F87F29C42466EFB30054EF26 /* utils.swift */,
+				F8A294DC2467EE1200C905D7 /* ServerConfig.swift */,
 			);
 			path = "GoToNetUI-X";
-			sourceTree = "<group>";
-		};
-		BDB27CCD2466968F00DAD8C9 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				BDB27CCE2466968F00DAD8C9 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		F8A294CA24670CA300C905D7 /* Support Files */ = {
@@ -106,6 +99,14 @@
 				F8A294CD2467B90D00C905D7 /* stop-cli-go-to-net.sh */,
 			);
 			path = "go-to-net";
+			sourceTree = "<group>";
+		};
+		F8A294DE2468005800C905D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8A294DF2468005800C905D7 /* NetworkExtension.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,7 +175,6 @@
 				F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */,
 				F8A294CF2467B90D00C905D7 /* stop-cli-go-to-net.sh in Resources */,
 				BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */,
-				BDB27CCF2466968F00DAD8C9 /* Preview Assets.xcassets in Resources */,
 				BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,8 +187,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */,
-				BDB27CFF2466C45500DAD8C9 /* ServerConfigView.swift in Sources */,
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
+				F8A294DD2467EE1200C905D7 /* ServerConfig.swift in Sources */,
 				F87F29C52466EFB30054EF26 /* utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,9 +325,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "GoToNetUI-X/GoToNetUI_X.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"GoToNetUI-X/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "GoToNetUI-X/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -337,6 +339,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "xin.luna.GoToNetUI-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -346,9 +349,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "GoToNetUI-X/GoToNetUI_X.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"GoToNetUI-X/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "GoToNetUI-X/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -358,6 +363,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "xin.luna.GoToNetUI-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

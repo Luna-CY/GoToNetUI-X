@@ -60,7 +60,7 @@ func generateCliCmdPList() -> Bool {
     
     let oldSha1Sum = getFileSHA1Sum(plistFilepath)
     
-    let arguments = [cliCmdPath, "-sh", "tsp2.luna.xin", "-sp", "443", "-la", "127.0.0.1", "-lp", "1281", "-u", "luna", "-p", "luna-ss-pass"]
+    let arguments = [cliCmdPath, "-sh", "tsp2.luna.xin", "-sp", "443", "-la", "127.0.0.1", "-lp", "1280", "-u", "luna", "-p", "luna-ss-pass"]
     
     let dict: NSMutableDictionary = [
         "Label": "xin.luna.cli-go-to-net",
@@ -126,18 +126,37 @@ func stopCliCmdService() -> Bool {
 /**
  同步cli-go-to-net服务
  */
-func syncCliCmdService() -> Bool {
+func syncCliCmdService(action: String) -> Bool {
     if !generateCliCmdPList() {
         NSLog("生成服务配置失败")
         
         return false
     }
     
-    if !stopCliCmdService() {
-        return false
-    }
-    
-    if !startCliCmdService() {
+    switch action {
+    case "start":
+        if !startCliCmdService() {
+            return false
+        }
+        
+        break
+    case "stop":
+        if !stopCliCmdService() {
+            return false
+        }
+        
+        break
+    case "restart":
+        if !stopCliCmdService() {
+            return false
+        }
+        
+        if !startCliCmdService() {
+            return false
+        }
+        
+        break
+    default:
         return false
     }
     
