@@ -167,17 +167,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var serverConfigListEnd: NSMenuItem!
     
     /**
-     打开服务器配置管理窗口
-     */
-    @IBAction func openServerListManager(_ sender: Any) {
-        let serverConfig = ServerConfig(name: "test-one", hostname: "tsp2.luna.xin", serverPort: 443, username: "luna", password: "luna-ss-pass")
-        
-        _ = ServerConfigManager.default.addServerConfig(name: serverConfig.name, serverConfig: serverConfig)
-        
-        self.flushServerConfigList()
-    }
-    
-    /**
      打开日志控制台
      */
     @IBAction func openLogControl(_ sender: Any) {
