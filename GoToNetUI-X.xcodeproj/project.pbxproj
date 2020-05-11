@@ -19,6 +19,8 @@
 		F8A294D32467BE8800C905D7 /* cli-go-to-net in Resources */ = {isa = PBXBuildFile; fileRef = F8A294D12467BE8800C905D7 /* cli-go-to-net */; };
 		F8A294DD2467EE1200C905D7 /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A294DC2467EE1200C905D7 /* ServerConfig.swift */; };
 		F8A294E02468005800C905D7 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A294DF2468005800C905D7 /* NetworkExtension.framework */; };
+		F8A294E424697CA800C905D7 /* ServerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A294E324697CA800C905D7 /* ServerEditor.swift */; };
+		F8A294E624698A8B00C905D7 /* ServerEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A294E524698A8B00C905D7 /* ServerEditorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		F8A294D12467BE8800C905D7 /* cli-go-to-net */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "cli-go-to-net"; sourceTree = "<group>"; };
 		F8A294DC2467EE1200C905D7 /* ServerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
 		F8A294DF2468005800C905D7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		F8A294E324697CA800C905D7 /* ServerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditor.swift; sourceTree = "<group>"; };
+		F8A294E524698A8B00C905D7 /* ServerEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				BDB27D0324691A4900DAD8C9 /* ServerConfigEditorView.swift */,
+				F8A294E324697CA800C905D7 /* ServerEditor.swift */,
+				F8A294E524698A8B00C905D7 /* ServerEditorController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -202,6 +208,8 @@
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
 				F8A294DD2467EE1200C905D7 /* ServerConfig.swift in Sources */,
 				F87F29C52466EFB30054EF26 /* utils.swift in Sources */,
+				F8A294E424697CA800C905D7 /* ServerEditor.swift in Sources */,
+				F8A294E624698A8B00C905D7 /* ServerEditorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
