@@ -31,11 +31,11 @@ func installCliCmd() -> Bool {
     let task = Process.launchedProcess(launchPath: sh!, arguments: [""])
     task.waitUntilExit()
     if task.terminationStatus == 0 {
-        NSLog("Install ss-local succeeded.")
+        NSLog("Install cli-go-to-net succeeded.")
         
         return true
     } else {
-        NSLog("Install ss-local failed.")
+        NSLog("Install cli-go-to-net failed.")
         
         return false
     }
@@ -62,7 +62,11 @@ func generateCliCmdPList() -> Bool {
     
     let selected = UserDefaults.standard.string(forKey: "selectedServerName")!
     let config = ServerConfigManager.default.getServerConfigList()[selected]!
-    let arguments = [cliCmdPath, "-sh", config.hostname, "-sp", String(config.serverPort), "-la", config.localAddress, "-lp", String(config.localPort), "-u", config.username, "-p", config.password]
+    
+    let localAddr = UserDefaults.standard.string(forKey: "localAddr")
+    let localPort = UserDefaults.standard.integer(forKey: "localPort")
+    
+    let arguments = [cliCmdPath, "-sh", config.hostname, "-sp", String(config.serverPort), "-la", localAddr, "-lp", String(localPort), "-u", config.username, "-p", config.password]
     
     let dict: NSMutableDictionary = [
         "Label": "xin.luna.cli-go-to-net",
@@ -71,6 +75,7 @@ func generateCliCmdPList() -> Bool {
         "StandardErrorPath": logFilePath,
         "ProgramArguments": arguments,
     ]
+    
     dict.write(toFile: plistFilepath, atomically: true)
     if oldSha1Sum != getFileSHA1Sum(plistFilepath) {
         NSLog("生成新的PList文件")
@@ -129,32 +134,44 @@ func stopCliCmdService() -> Bool {
  同步cli-go-to-net服务
  */
 func syncCliCmdService(action: String) -> Bool {
-    if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
-        _ = stopCliCmdService()
-        
-        return false
-    }
-    
-    if !generateCliCmdPList() {
-        NSLog("生成服务配置失败")
-        
-        return false
-    }
-    
     switch action {
-    case "start":
-        if !startCliCmdService() {
-            return false
-        }
-        
-        break
     case "stop":
         if !stopCliCmdService() {
             return false
         }
         
         break
+    case "start":
+        if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
+            _ = stopCliCmdService()
+            
+            return false
+        }
+        
+        if !generateCliCmdPList() {
+            NSLog("生成服务配置失败")
+            
+            return false
+        }
+        
+        if !startCliCmdService() {
+            return false
+        }
+        
+        break
     case "restart":
+        if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
+            _ = stopCliCmdService()
+            
+            return false
+        }
+        
+        if !generateCliCmdPList() {
+            NSLog("生成服务配置失败")
+            
+            return false
+        }
+        
         if !stopCliCmdService() {
             return false
         }

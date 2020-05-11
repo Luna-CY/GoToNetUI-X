@@ -33,6 +33,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         self.flushServerConfigList()
+        
+        let selected = UserDefaults.standard.string(forKey: "selectedServerName")
+        if "" == selected {
+            self.startServiceItem.action = nil
+        }
     }
     
     /**
@@ -66,10 +71,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         UserDefaults.standard.set(true, forKey: "isStarted")
         
-        self.startServiceItem.isEnabled = false
+        self.startServiceItem.action = nil
         self.startServiceItem.isHidden = true
         
-        self.closeServiceItem.isEnabled = true
+        self.closeServiceItem.action = #selector(AppDelegate.closeServiceAction)
         self.closeServiceItem.isHidden = false
         
         if let button = self.statusBarItem.button {
@@ -98,10 +103,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         UserDefaults.standard.set(false, forKey: "isStarted")
         
-        self.closeServiceItem.isEnabled = false
+        self.closeServiceItem.action = nil
         self.closeServiceItem.isHidden = true
         
-        self.startServiceItem.isEnabled = true
+        self.startServiceItem.action = #selector(AppDelegate.startServiceAction)
         self.startServiceItem.isHidden = false
         
         if let button = self.statusBarItem.button {
@@ -165,7 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      打开服务器配置管理窗口
      */
     @IBAction func openServerListManager(_ sender: Any) {
-        let serverConfig = ServerConfig(name: "test-one", hostname: "tsp2.luna.xin", serverPort: 443, localAddress: "127.0.0.1", localPort: 1280, username: "luna", password: "luna-ss-pass")
+        let serverConfig = ServerConfig(name: "test-one", hostname: "tsp2.luna.xin", serverPort: 443, username: "luna", password: "luna-ss-pass")
         
         _ = ServerConfigManager.default.addServerConfig(name: serverConfig.name, serverConfig: serverConfig)
         
@@ -204,6 +209,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "isStarted": false,
             "runningMode": "manual",
             "selectedServerName": "",
+            "localAddr": "127.0.0.1",
+            "localPort": NSNumber(value: 1280 as UInt16),
         ])
     }
     
@@ -235,8 +242,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    /**
+     选择服务器配置
+     */
     @IBAction func selectServer(_ sender: NSMenuItem) {
         UserDefaults.standard.set(sender.title, forKey: "selectedServerName")
+        self.startServiceItem.action = #selector(AppDelegate.startServiceAction)
         
         if !syncCliCmdService(action: "restart") {
             UserDefaults.standard.set(false, forKey: "isStarted")
@@ -252,6 +263,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
             return
+        } else {
+            UserDefaults.standard.set(true, forKey: "isStarted")
+            
+            self.startServiceItem.isEnabled = false
+            self.startServiceItem.isHidden = true
+            
+            self.closeServiceItem.isEnabled = true
+            self.closeServiceItem.isHidden = false
+            
+            if let button = self.statusBarItem.button {
+                button.image = NSImage(named: "IconOn")
+            }
         }
         
         sender.state = .on

@@ -17,9 +17,6 @@ struct ServerConfig : Codable {
     var hostname: String
     var serverPort: Int
     
-    var localAddress: String
-    var localPort: Int
-    
     var username: String
     var password: String
 }
