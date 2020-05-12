@@ -19,6 +19,13 @@ struct ServerConfig : Codable {
     
     var username: String
     var password: String
+    
+    /**
+     是否有效
+     */
+    func isValid() -> Bool {
+        return "" != self.hostname && 0 != self.serverPort && "" != self.username && "" != self.password
+    }
 }
 
 /**
@@ -27,7 +34,7 @@ struct ServerConfig : Codable {
 class ServerConfigManager : NSObject {
     static let `default` = ServerConfigManager()
     
-    private var list: [String: ServerConfig] = [:]
+    private var list : [ServerConfig] = []
     
     override private init() {
         super.init()
@@ -42,32 +49,39 @@ class ServerConfigManager : NSObject {
         let configFilePath = userConfigDir + ServerConfigFileName
         
         if !manager.fileExists(atPath: configFilePath) {
-            let data = "{}".data(using: .utf8)
+            let data = "[]".data(using: .utf8)
             if !manager.createFile(atPath: configFilePath, contents: data, attributes: nil) {
                 NSLog("创建服务器配置文件失败")
             }
         }
         
         let json = manager.contents(atPath: configFilePath)!
-        let list = try! JSONDecoder().decode(Dictionary<String, ServerConfig>.self, from: json)
-        
-        for (key, value) in list {
-            self.list[key] = value
-        }
+        self.list = (try! JSONDecoder().decode([ServerConfig].self, from: json)).sorted(by: {$0.name < $1.name})
     }
     
     /**
      获取服务器配置列表
      */
-    func getServerConfigList() -> [String: ServerConfig] {
+    func getServerConfigList() -> [ServerConfig] {
         return self.list
     }
     
     /**
      添加服务器配置
      */
-    func addServerConfig(name: String, serverConfig: ServerConfig) -> Bool {
-        self.list[name] = serverConfig
+    func addServerConfig(_ serverConfig: ServerConfig) -> Bool {
+        self.list.append(serverConfig)
+        self.sort()
+        
+        return self.flushToFile()
+    }
+    
+    /**
+     删除服务器配置
+     */
+    func delServerConfig(_ index: Int) -> Bool {
+        self.list.remove(at: index)
+        self.sort()
         
         return self.flushToFile()
     }
@@ -83,5 +97,12 @@ class ServerConfigManager : NSObject {
         try! manager.removeItem(atPath: configFilePath)
         
         return manager.createFile(atPath: configFilePath, contents: data, attributes: nil)
+    }
+    
+    /**
+     排序
+     */
+    private func sort() {
+        self.list = self.list.sorted(by: {$0.name < $1.name})
     }
 }

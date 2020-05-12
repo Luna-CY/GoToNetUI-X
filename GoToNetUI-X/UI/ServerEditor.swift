@@ -10,22 +10,19 @@ import Cocoa
 
 class ServerEditor: NSView {
     
+    @IBOutlet weak var editorBox: NSBox!
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
-        // Drawing code here.
-        self.editorContainerItem.wantsLayer = true
-        self.editorContainerItem.layer?.backgroundColor = .white
+        self.editorBox.layer?.backgroundColor = .white
     }
-    
-    @IBOutlet weak var editorContainerItem: NSView!
-    
-    @IBOutlet weak var configListViewItem: NSScrollView!
     
     /**
      关闭窗口
      */
-    @IBAction func closeWindow(_ sender: Any) {
+    @IBAction func closeWindow(_ sender: NSButton) {
         self.window?.close()
     }
+    
 }

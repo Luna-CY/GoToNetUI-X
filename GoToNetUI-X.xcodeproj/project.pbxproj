@@ -11,7 +11,6 @@
 		BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */; };
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
 		BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D002466C4C000DAD8C9 /* constants.swift */; };
-		BDB27D0424691A4900DAD8C9 /* ServerConfigEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D0324691A4900DAD8C9 /* ServerConfigEditorView.swift */; };
 		F87F29C52466EFB30054EF26 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F29C42466EFB30054EF26 /* utils.swift */; };
 		F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */; };
 		F8A294CF2467B90D00C905D7 /* stop-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CD2467B90D00C905D7 /* stop-cli-go-to-net.sh */; };
@@ -31,7 +30,6 @@
 		BDB27CD32466968F00DAD8C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDB27CD42466968F00DAD8C9 /* GoToNetUI_X.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoToNetUI_X.entitlements; sourceTree = "<group>"; };
 		BDB27D002466C4C000DAD8C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
-		BDB27D0324691A4900DAD8C9 /* ServerConfigEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfigEditorView.swift; sourceTree = "<group>"; };
 		F87F29C42466EFB30054EF26 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-cli-go-to-net.sh"; sourceTree = "<group>"; };
 		F8A294CD2467B90D00C905D7 /* stop-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "stop-cli-go-to-net.sh"; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		BDB27D0224691A0100DAD8C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				BDB27D0324691A4900DAD8C9 /* ServerConfigEditorView.swift */,
 				F8A294E324697CA800C905D7 /* ServerEditor.swift */,
 				F8A294E524698A8B00C905D7 /* ServerEditorController.swift */,
 			);
@@ -204,7 +201,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */,
-				BDB27D0424691A4900DAD8C9 /* ServerConfigEditorView.swift in Sources */,
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
 				F8A294DD2467EE1200C905D7 /* ServerConfig.swift in Sources */,
 				F87F29C52466EFB30054EF26 /* utils.swift in Sources */,

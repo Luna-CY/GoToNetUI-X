@@ -6,6 +6,7 @@
 //  Copyright © 2020 Luna. All rights reserved.
 //
 
+import Foundation
 import Cocoa
 import SwiftUI
 
@@ -34,10 +35,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.flushServerConfigList()
         
-        let selected = UserDefaults.standard.string(forKey: "selectedServerName")
-        if "" == selected {
+        let selected = UserDefaults.standard.integer(forKey: "selectedServerName")
+        if -1 == selected {
             self.startServiceItem.action = nil
         }
+        
+        NotificationCenter.default.addObserver(forName: NotifyServerConfigListChange, object: nil, queue: nil, using: { note in
+            self.flushServerConfigList()
+        })
     }
     
     /**
@@ -69,17 +74,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        UserDefaults.standard.set(true, forKey: "isStarted")
-        
-        self.startServiceItem.action = nil
-        self.startServiceItem.isHidden = true
-        
-        self.closeServiceItem.action = #selector(AppDelegate.closeServiceAction)
-        self.closeServiceItem.isHidden = false
-        
-        if let button = self.statusBarItem.button {
-            button.image = NSImage(named: "IconOn")
-        }
+        self.setStartState()
     }
     
     /**
@@ -101,17 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        UserDefaults.standard.set(false, forKey: "isStarted")
-        
-        self.closeServiceItem.action = nil
-        self.closeServiceItem.isHidden = true
-        
-        self.startServiceItem.action = #selector(AppDelegate.startServiceAction)
-        self.startServiceItem.isHidden = false
-        
-        if let button = self.statusBarItem.button {
-            button.image = NSImage(named: "IconOff")
-        }
+        self.setStopState()
     }
     
     /**
@@ -197,9 +182,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         defaults.register(defaults: [
             "isStarted": false,
             "runningMode": "manual",
-            "selectedServerName": "",
+            "selectedServerName": NSNumber(value: -1),
             "localAddr": "127.0.0.1",
-            "localPort": NSNumber(value: 1280 as UInt16),
+            "localPort": NSNumber(value: 1280),
         ])
     }
     
@@ -209,25 +194,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func flushServerConfigList() {
         guard let submenu = self.serverConfigListItem.submenu else { return }
 
-        let beginIndex = submenu.index(of: self.serverConfigListBegin) + 1
+        var beginIndex = submenu.index(of: self.serverConfigListBegin) + 1
         let endIndex = submenu.index(of: self.serverConfigListEnd)
         
         for index in (beginIndex..<endIndex).reversed() {
             submenu.removeItem(at: index)
         }
         
-        let selected = UserDefaults.standard.string(forKey: "selectedServerName")
+        let selected = UserDefaults.standard.integer(forKey: "selectedServerName")
+        var isFound = false
+        var hasValidConfig = false
         
         let serverConfigList = ServerConfigManager.default.getServerConfigList()
-        for (_, serverConfig) in serverConfigList {
+        for (index, serverConfig) in serverConfigList.enumerated() {
             let item = NSMenuItem()
             item.title = serverConfig.name
-            item.state = selected == serverConfig.name ? .on : .off
-            item.isEnabled = true
             
-            item.action = #selector(AppDelegate.selectServer)
+            if selected == index {
+                item.state = .on
+                isFound = true
+            }
+            
+            if serverConfig.isValid() {
+                item.action = #selector(AppDelegate.selectServer)
+                hasValidConfig = true
+            }
             
             submenu.insertItem(item, at: beginIndex)
+            beginIndex += 1
+        }
+        
+        if !isFound && -1 != selected {
+            UserDefaults.standard.set(NSNumber(value: -1), forKey: "selectedServerName")
+            self.setStopState()
+        }
+        
+        if !hasValidConfig {
+            self.startServiceItem.action = nil
         }
     }
     
@@ -235,38 +238,54 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      选择服务器配置
      */
     @IBAction func selectServer(_ sender: NSMenuItem) {
-        UserDefaults.standard.set(sender.title, forKey: "selectedServerName")
+        guard let submenu = self.serverConfigListItem.submenu else { return }
+        
+        UserDefaults.standard.set(submenu.index(of: sender) - 2, forKey: "selectedServerName")
         self.startServiceItem.action = #selector(AppDelegate.startServiceAction)
         
         if !syncCliCmdService(action: "restart") {
             UserDefaults.standard.set(false, forKey: "isStarted")
-            
-            self.closeServiceItem.isEnabled = false
-            self.closeServiceItem.isHidden = true
-            
-            self.startServiceItem.isEnabled = true
-            self.startServiceItem.isHidden = false
-            
-            if let button = self.statusBarItem.button {
-                button.image = NSImage(named: "IconOff")
-            }
+            self.setStopState()
             
             return
         } else {
             UserDefaults.standard.set(true, forKey: "isStarted")
             
-            self.startServiceItem.isEnabled = false
-            self.startServiceItem.isHidden = true
-            
-            self.closeServiceItem.isEnabled = true
-            self.closeServiceItem.isHidden = false
-            
-            if let button = self.statusBarItem.button {
-                button.image = NSImage(named: "IconOn")
-            }
+            self.setStartState()
         }
         
-        sender.state = .on
+        self.flushServerConfigList()
+    }
+    
+    func setStartState() {
+        UserDefaults.standard.set(true, forKey: "isStarted")
+        
+        self.startServiceItem.isEnabled = false
+        self.startServiceItem.isHidden = true
+        
+        self.closeServiceItem.isEnabled = true
+        self.closeServiceItem.isHidden = false
+        
+        if let button = self.statusBarItem.button {
+            button.image = NSImage(named: "IconOn")
+        }
+    }
+    
+    /**
+     设置关闭状态
+     */
+    func setStopState() {
+        UserDefaults.standard.set(false, forKey: "isStarted")
+        
+        self.closeServiceItem.isEnabled = false
+        self.closeServiceItem.isHidden = true
+        
+        self.startServiceItem.isEnabled = true
+        self.startServiceItem.isHidden = false
+        
+        if let button = self.statusBarItem.button {
+            button.image = NSImage(named: "IconOff")
+        }
     }
 }
 

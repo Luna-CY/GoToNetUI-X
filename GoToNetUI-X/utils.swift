@@ -60,8 +60,8 @@ func generateCliCmdPList() -> Bool {
     
     let oldSha1Sum = getFileSHA1Sum(plistFilepath)
     
-    let selected = UserDefaults.standard.string(forKey: "selectedServerName")!
-    let config = ServerConfigManager.default.getServerConfigList()[selected]!
+    let selected = UserDefaults.standard.integer(forKey: "selectedServerName")
+    let config = ServerConfigManager.default.getServerConfigList()[selected]
     
     let localAddr = UserDefaults.standard.string(forKey: "localAddr")
     let localPort = UserDefaults.standard.integer(forKey: "localPort")
@@ -142,7 +142,7 @@ func syncCliCmdService(action: String) -> Bool {
         
         break
     case "start":
-        if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
+        if -1 == UserDefaults.standard.integer(forKey: "selectedServerName") {
             _ = stopCliCmdService()
             
             return false
@@ -160,7 +160,7 @@ func syncCliCmdService(action: String) -> Bool {
         
         break
     case "restart":
-        if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
+        if -1 == UserDefaults.standard.integer(forKey: "selectedServerName") {
             _ = stopCliCmdService()
             
             return false
