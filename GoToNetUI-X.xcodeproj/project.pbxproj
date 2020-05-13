@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD59ADD1246C0F33008AC2F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD59ADD0246C0F33008AC2F1 /* SystemConfiguration.framework */; };
+		BD59ADD3246C0F40008AC2F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD59ADD2246C0F40008AC2F1 /* Security.framework */; };
 		BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */; };
 		BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */; };
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD59ADD0246C0F33008AC2F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BD59ADD2246C0F40008AC2F1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BDB27CC42466968D00DAD8C9 /* GoToNetUI-X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GoToNetUI-X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD59ADD1246C0F33008AC2F1 /* SystemConfiguration.framework in Frameworks */,
+				BD59ADD3246C0F40008AC2F1 /* Security.framework in Frameworks */,
 				F8A294E02468005800C905D7 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +133,8 @@
 		F8A294DE2468005800C905D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD59ADD2246C0F40008AC2F1 /* Security.framework */,
+				BD59ADD0246C0F33008AC2F1 /* SystemConfiguration.framework */,
 				F8A294DF2468005800C905D7 /* NetworkExtension.framework */,
 			);
 			name = Frameworks;

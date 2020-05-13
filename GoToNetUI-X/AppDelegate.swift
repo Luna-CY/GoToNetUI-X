@@ -33,6 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named: "IconOff")
         }
         
+        self.pacModeItem.state = "auto" == UserDefaults.standard.string(forKey: "runningMode") ? .on : .off
+        self.globalModeItem.state = "global" == UserDefaults.standard.string(forKey: "runningMode") ? .on : .off
+        self.manualModeItem.state = "manual" == UserDefaults.standard.string(forKey: "runningMode") ? .on : .off
+        
         self.flushServerConfigList()
         
         let selected = UserDefaults.standard.integer(forKey: "selectedServerName")
@@ -116,10 +120,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      切换为pac模式菜单项动作
      */
     @IBAction func pacModeAction(_ sender: Any) {
-        self.globalModeItem.state = .off
-        self.manualModeItem.state = .off
-        
-        self.pacModeItem.state = .on
+        if UserDefaults.standard.bool(forKey: "isStarted") {
+            if !NetworkConfigUtil.default.setAutoProxy(true) {
+                return
+            }
+            
+            UserDefaults.standard.set("auto", forKey: "runningMode")
+            
+            self.globalModeItem.state = .off
+            self.manualModeItem.state = .off
+            
+            self.pacModeItem.state = .on
+        } else {
+            UserDefaults.standard.set("auto", forKey: "runningMode")
+            
+            self.globalModeItem.state = .off
+            self.manualModeItem.state = .off
+            
+            self.pacModeItem.state = .on
+        }
     }
     
     /**
@@ -131,12 +150,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      切换为全局模式菜单项动作
      */
     @IBAction func globalModeAction(_ sender: Any) {
-        self.pacModeItem.state = .off
-        self.manualModeItem.state = .off
-        
-        self.globalModeItem.state = .on
-        
-        NetworkConfigUtil.default.setGlobalProxy()
+        if UserDefaults.standard.bool(forKey: "isStarted") {
+            if !NetworkConfigUtil.default.setGlobalProxy(true) {
+                return
+            }
+            
+            UserDefaults.standard.set("global", forKey: "runningMode")
+            
+            self.pacModeItem.state = .off
+            self.manualModeItem.state = .off
+            
+            self.globalModeItem.state = .on
+        } else {
+            UserDefaults.standard.set("global", forKey: "runningMode")
+            
+            self.pacModeItem.state = .off
+            self.manualModeItem.state = .off
+            
+            self.globalModeItem.state = .on
+        }
     }
     
     /**
@@ -148,10 +180,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      切换为手动模式菜单项动作
      */
     @IBAction func manualModeAction(_ sender: Any) {
-        self.pacModeItem.state = .off
-        self.globalModeItem.state = .off
-        
-        self.manualModeItem.state = .on
+        if UserDefaults.standard.bool(forKey: "isStarted") {
+            if !NetworkConfigUtil.default.setManualProxy() {
+                return
+            }
+            
+            UserDefaults.standard.set("manual", forKey: "runningMode")
+            
+            self.pacModeItem.state = .off
+            self.globalModeItem.state = .off
+            
+            self.manualModeItem.state = .on
+        } else {
+            UserDefaults.standard.set("manual", forKey: "runningMode")
+            
+            self.pacModeItem.state = .off
+            self.globalModeItem.state = .off
+            
+            self.manualModeItem.state = .on
+        }
     }
     
     /**

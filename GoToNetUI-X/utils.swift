@@ -136,6 +136,14 @@ func stopCliCmdService() -> Bool {
 func syncCliCmdService(action: String) -> Bool {
     switch action {
     case "stop":
+        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAutoProxy(false) {
+            return false
+        }
+        
+        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobalProxy(false) {
+            return false
+        }
+        
         if !stopCliCmdService() {
             return false
         }
@@ -158,6 +166,14 @@ func syncCliCmdService(action: String) -> Bool {
             return false
         }
         
+        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAutoProxy(true) {
+            return false
+        }
+        
+        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobalProxy(true) {
+            return false
+        }
+        
         break
     case "restart":
         if -1 == UserDefaults.standard.integer(forKey: "selectedServerName") {
@@ -177,6 +193,14 @@ func syncCliCmdService(action: String) -> Bool {
         }
         
         if !startCliCmdService() {
+            return false
+        }
+        
+        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAutoProxy(true) {
+            return false
+        }
+        
+        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobalProxy(true) {
             return false
         }
         
