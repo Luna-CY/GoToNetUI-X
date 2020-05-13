@@ -38,6 +38,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let selected = UserDefaults.standard.integer(forKey: "selectedServerName")
         if -1 == selected {
             self.startServiceItem.action = nil
+        } else if UserDefaults.standard.bool(forKey: "startServiceOnProgram") {
+            if !syncCliCmdService(action: "start") {
+                NSLog("启动服务失败")
+                
+                return
+            }
+            
+            self.setStartState()
         }
         
         NotificationCenter.default.addObserver(forName: NotifyServerConfigListChange, object: nil, queue: nil, using: { note in
@@ -127,6 +135,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.manualModeItem.state = .off
         
         self.globalModeItem.state = .on
+        
+        NetworkConfigUtil.default.setGlobalProxy()
     }
     
     /**
@@ -154,7 +164,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /**
      打开日志控制台
      */
-    @IBAction func openLogControl(_ sender: Any) {
+    @IBAction func openLogControl(_ sender: NSMenuItem) {
         let ws = NSWorkspace.shared
         if let appUrl = ws.urlForApplication(withBundleIdentifier: "com.apple.Console") {
             try! ws.launchApplication(at: appUrl
@@ -181,10 +191,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let defaults = UserDefaults.standard
         defaults.register(defaults: [
             "isStarted": false,
+            "startServiceOnProgram": false,
             "runningMode": "manual",
             "selectedServerName": NSNumber(value: -1),
             "localAddr": "127.0.0.1",
             "localPort": NSNumber(value: 1280),
+            "gfwList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
         ])
     }
     

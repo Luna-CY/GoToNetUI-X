@@ -5,6 +5,154 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Window Controller-->
+        <scene sceneID="Wuc-Sb-sgw">
+            <objects>
+                <windowController id="scM-dB-wGn" sceneMemberID="viewController">
+                    <window key="window" title="偏好设置" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="a4n-z5-3Qp">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" topStrut="YES"/>
+                        <rect key="contentRect" x="294" y="620" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="scM-dB-wGn" id="aFB-gU-Q4J"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="0dr-sL-Zz2" kind="relationship" relationship="window.shadowedContentViewController" id="O2Z-mZ-bTI"/>
+                    </connections>
+                </windowController>
+                <customObject id="5nE-Xp-7EI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="146" y="-479"/>
+        </scene>
+        <!--Preferences Controller-->
+        <scene sceneID="iBs-q6-Zz4">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="0dr-sL-Zz2" customClass="PreferencesController" customModule="GoToNetUI_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="8w2-Ni-ib8" customClass="Preferences" customModule="GoToNetUI_X" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="671" height="383"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1rF-bA-3lp">
+                                <rect key="frame" x="18" y="347" width="70" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="常规设置" id="hrt-wA-bxI">
+                                    <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="vaY-vb-pMg">
+                                <rect key="frame" x="20" y="336" width="631" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1tH-n0-Yw6">
+                                <rect key="frame" x="20" y="194" width="70" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="代理设置" id="RxA-d3-Lzs">
+                                    <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="MVD-X4-qAN">
+                                <rect key="frame" x="20" y="183" width="631" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agV-Ir-Iuv">
+                                <rect key="frame" x="18" y="309" width="102" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="是否开机启动" bezelStyle="regularSquare" imagePosition="left" inset="2" id="s90-UI-VQ5">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="switchStartOnUser:" target="0dr-sL-Zz2" id="ORO-KB-XpZ"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uMq-aG-R0g">
+                                <rect key="frame" x="18" y="282" width="273" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="是否自动启动服务(如果服务器配置可用时)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Nfo-rP-Ym5">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="switchStartServiceOnProgram:" target="0dr-sL-Zz2" id="XoN-AW-Ckz"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QlM-lD-Jru">
+                                <rect key="frame" x="20" y="154" width="84" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="本地监听地址" id="K8J-9L-hPj">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PTg-gt-abw">
+                                <rect key="frame" x="143" y="151" width="139" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="127.0.0.1" placeholderString="ip地址" drawsBackground="YES" id="a4W-X7-0Ty">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ium-hh-yVM">
+                                <rect key="frame" x="290" y="151" width="50" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1280" placeholderString="端口" drawsBackground="YES" id="Sla-fK-cma">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBF-Zo-YVa">
+                                <rect key="frame" x="20" y="123" width="115" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="GFW规则列表地址" id="qdr-Gp-olh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yA-FL-2gT">
+                                <rect key="frame" x="143" y="120" width="508" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ohb-1M-qHk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5pr-Sf-bIs">
+                                <rect key="frame" x="302" y="58" width="67" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="保存" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X77-Ss-5na">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveProxy:" target="0dr-sL-Zz2" id="Bn1-j3-75j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="gfwListAddr" destination="2yA-FL-2gT" id="ekD-pQ-74c"/>
+                        <outlet property="localAddr" destination="PTg-gt-abw" id="XHU-vl-cBF"/>
+                        <outlet property="localPort" destination="Ium-hh-yVM" id="BN5-u1-vtd"/>
+                        <outlet property="saveProxyButton" destination="5pr-Sf-bIs" id="C4O-aq-g3T"/>
+                        <outlet property="startOnUser" destination="agV-Ir-Iuv" id="LhQ-dI-8da"/>
+                        <outlet property="startServiceOnProgram" destination="uMq-aG-R0g" id="DWS-Ji-axb"/>
+                    </connections>
+                </viewController>
+                <customObject id="dt1-ea-F4x" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844.5" y="-428.5"/>
+        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -704,12 +852,12 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="运行模式" id="KnS-nQ-vnZ">
                                 <items>
-                                    <menuItem title="PAC自动模式" hidden="YES" enabled="NO" keyEquivalent="a" id="eWS-eC-yWr">
+                                    <menuItem title="PAC自动模式" keyEquivalent="a" id="eWS-eC-yWr">
                                         <connections>
                                             <action selector="pacModeAction:" target="Voe-Tx-rLC" id="J2c-CB-LJ2"/>
                                         </connections>
                                     </menuItem>
-                                    <menuItem title="全局模式" hidden="YES" enabled="NO" keyEquivalent="g" id="83z-N4-lfJ">
+                                    <menuItem title="全局模式" keyEquivalent="g" id="83z-N4-lfJ">
                                         <connections>
                                             <action selector="globalModeAction:" target="Voe-Tx-rLC" id="Loq-vU-lSB"/>
                                         </connections>
@@ -735,6 +883,11 @@
                                     <menuItem isSeparatorItem="YES" id="Qwn-Xo-Tk2"/>
                                 </items>
                             </menu>
+                        </menuItem>
+                        <menuItem title="偏好设置" keyEquivalent="," id="HfL-5s-HGh">
+                            <connections>
+                                <segue destination="scM-dB-wGn" kind="show" id="zt5-Nc-yUW"/>
+                            </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="cSs-AU-emR"/>
                         <menuItem title="打开日志控制台" id="gYh-sn-2JK">
