@@ -884,6 +884,7 @@
                                 </items>
                             </menu>
                         </menuItem>
+                        <menuItem isSeparatorItem="YES" id="1lc-VM-BRU"/>
                         <menuItem title="偏好设置" keyEquivalent="," id="HfL-5s-HGh">
                             <connections>
                                 <segue destination="scM-dB-wGn" kind="show" id="zt5-Nc-yUW"/>
