@@ -19,6 +19,24 @@ class NetworkConfigUtil : NSObject {
     }
     
     func setGlobalProxy() {
+        let scp = SystemConfiguration.SCPreferencesCreate(nil, SystemConfiguration.kSCPrefNetworkServices, nil)!
         
+        let services = SystemConfiguration.SCPreferencesGetValue(scp, SystemConfiguration.kSCPrefNetworkServices)! as! NSDictionary
+        
+        let proxies = NSMutableDictionary()
+        for (key, value) in services {
+            let d = value as! NSMutableDictionary
+            
+            let hardware = d.value(forKeyPath: "Interface.Hardware")! as! NSString
+            if hardware.isEqual(to: "airPort") || hardware.isEqual(to: "Ethernet") {
+                let path = String.init(format: "/%@/%@/%@", SystemConfiguration.kSCPrefNetworkServices as String, key as! String, SystemConfiguration.kSCEntNetProxies as String)
+                
+                proxies.setObject(NSNumber(value: 1), forKey: SystemConfiguration.kSCPropNetProxiesSOCKSEnable as NSString)
+                proxies.setObject(UserDefaults.standard.string(forKey: "localAddr")!, forKey: SystemConfiguration.kSCPropNetProxiesSOCKSProxy as NSString)
+                proxies.setObject(NSNumber(value: UserDefaults.standard.integer(forKey: "localPort")), forKey: SystemConfiguration.kSCPropNetProxiesSOCKSPort as NSString)
+                
+                SystemConfiguration.SCPreferencesPathSetValue(scp, path as CFString, proxies as CFDictionary)
+            }
+        }
     }
 }
