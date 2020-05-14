@@ -84,7 +84,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KIm-cd-Ycc">
-                                    <rect key="frame" x="121" y="288" width="58" height="16"/>
+                                    <rect key="frame" x="79" y="288" width="58" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="配置名称" id="uh7-ud-o4b">
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -93,7 +93,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfh-0g-qZL">
-                                    <rect key="frame" x="194" y="286" width="184" height="21"/>
+                                    <rect key="frame" x="143" y="286" width="279" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="配置唯一标识" drawsBackground="YES" id="965-WO-ztZ">
                                         <font key="font" metaFont="system"/>
@@ -102,7 +102,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRl-IA-3H3">
-                                    <rect key="frame" x="194" y="212" width="119" height="21"/>
+                                    <rect key="frame" x="143" y="212" width="214" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="服务器域名" drawsBackground="YES" id="pZe-UU-2us">
                                         <font key="font" metaFont="system"/>
@@ -111,7 +111,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ukS-rj-ekI">
-                                    <rect key="frame" x="321" y="212" width="57" height="21"/>
+                                    <rect key="frame" x="365" y="212" width="57" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="443" placeholderString="端口" drawsBackground="YES" id="fx7-qh-c0v">
                                         <font key="font" metaFont="system"/>
@@ -120,7 +120,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iGz-CE-kuD">
-                                    <rect key="frame" x="194" y="181" width="184" height="21"/>
+                                    <rect key="frame" x="143" y="177" width="279" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="用于验证的用户名" drawsBackground="YES" id="3Vz-Ol-bpc">
                                         <font key="font" metaFont="system"/>
@@ -129,7 +129,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRx-Mu-KGg">
-                                    <rect key="frame" x="108" y="214" width="71" height="16"/>
+                                    <rect key="frame" x="66" y="214" width="71" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="服务器配置" id="4a6-X8-gDt">
                                         <font key="font" metaFont="system"/>
@@ -138,7 +138,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H8Z-6H-msv">
-                                    <rect key="frame" x="121" y="183" width="58" height="16"/>
+                                    <rect key="frame" x="79" y="179" width="58" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="用户名称" id="yZ5-rN-G1V">
                                         <font key="font" metaFont="system"/>
@@ -147,7 +147,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Trl-Rz-6pn">
-                                    <rect key="frame" x="121" y="152" width="58" height="16"/>
+                                    <rect key="frame" x="79" y="144" width="58" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="用户密码" id="clB-fp-gT6">
                                         <font key="font" metaFont="system"/>
@@ -167,7 +167,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdN-mj-dTF">
-                                    <rect key="frame" x="117" y="58" width="67" height="32"/>
+                                    <rect key="frame" x="87" y="58" width="67" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="新增" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w4v-T9-amn">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -178,7 +178,7 @@
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gBl-tP-BI7">
-                                    <rect key="frame" x="317" y="58" width="67" height="32"/>
+                                    <rect key="frame" x="352" y="58" width="67" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="删除" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nyA-27-sUk">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -189,7 +189,7 @@
                                     </connections>
                                 </button>
                                 <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2un-62-gSZ">
-                                    <rect key="frame" x="194" y="150" width="184" height="21"/>
+                                    <rect key="frame" x="143" y="142" width="279" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="用于验证的密码" drawsBackground="YES" usesSingleLineMode="YES" id="XHG-Zv-Lc9">
                                         <font key="font" metaFont="system"/>
