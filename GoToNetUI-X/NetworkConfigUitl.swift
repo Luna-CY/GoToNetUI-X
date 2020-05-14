@@ -15,10 +15,25 @@ class NetworkConfigUtil : NSObject {
     
     static let `default` = NetworkConfigUtil()
     
+    private var flags : AuthorizationFlags? = nil
+    
     private var ref : AuthorizationRef? = nil
     
     private override init() {
         super.init()
+        
+        self.flags = AuthorizationFlags.init(arrayLiteral: AuthorizationFlags.interactionAllowed, AuthorizationFlags.preAuthorize, AuthorizationFlags.extendRights)
+
+        let osStatus = SystemConfiguration.AuthorizationCreate(nil, nil, self.flags!, &self.ref)
+        if SystemConfiguration.noErr != osStatus {
+            NSLog("获取系统授权失败")
+        }
+    }
+    
+    deinit {
+        if nil != self.ref {
+            SystemConfiguration.AuthorizationFree(self.ref!, self.flags!)
+        }
     }
     
     /**
@@ -42,7 +57,9 @@ class NetworkConfigUtil : NSObject {
             let d = value as! NSMutableDictionary
             
             let hardware = d.value(forKeyPath: "Interface.Hardware")! as! NSString
-            if hardware.isEqual(to: "airPort") || hardware.isEqual(to: "Ethernet") {
+            let userDefinedName = d.value(forKeyPath: "Interface.UserDefinedName")! as! NSString
+            
+            if hardware.isEqual(to: "AirPort") || hardware.isEqual(to: "Ethernet") || userDefinedName.isEqual(to: "Wi-Fi") {
                 let path = String.init(format: "/%@/%@/%@", SystemConfiguration.kSCPrefNetworkServices as String, key as! String, SystemConfiguration.kSCEntNetProxies as String)
                 
                 if b {
@@ -60,10 +77,6 @@ class NetworkConfigUtil : NSObject {
         SystemConfiguration.SCPreferencesCommitChanges(scp!)
         SystemConfiguration.SCPreferencesApplyChanges(scp!)
         SystemConfiguration.SCPreferencesSynchronize(scp!)
-        
-        if nil != self.ref {
-            SystemConfiguration.AuthorizationFree(self.ref!, AuthorizationFlags.interactionAllowed)
-        }
         
         return true
     }
@@ -87,12 +100,16 @@ class NetworkConfigUtil : NSObject {
      获取系统授权
      */
     private func getAuthorization() -> (SystemConfiguration.SCPreferences?, NSDictionary?) {
-        let flag = AuthorizationFlags.interactionAllowed
-
-        let osStatus = SystemConfiguration.AuthorizationCreate(nil, nil, flag, &self.ref)
-        if SystemConfiguration.noErr != osStatus {
-            NSLog("获取系统授权失败")
-
+//        let flag = AuthorizationFlags.init(arrayLiteral: AuthorizationFlags.interactionAllowed, AuthorizationFlags.preAuthorize, AuthorizationFlags.extendRights)
+//
+//        let osStatus = SystemConfiguration.AuthorizationCreate(nil, nil, flag, &self.ref)
+//        if SystemConfiguration.noErr != osStatus {
+//            NSLog("获取系统授权失败")
+//
+//            return (nil, nil)
+//        }
+        
+        if nil == self.ref {
             return (nil, nil)
         }
         

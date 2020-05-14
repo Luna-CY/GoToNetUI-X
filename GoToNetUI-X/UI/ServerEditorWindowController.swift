@@ -60,6 +60,8 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
     
     @IBAction func save(_ sender: Any) {
         if self.listTableView.selectedRow >= 0 {
+            self.saveButton.isEnabled = false
+            
             var config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
             
             if !ServerConfigManager.default.delServerConfig(self.listTableView.selectedRow) {
@@ -85,6 +87,8 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
     
     @IBAction func del(_ sender: Any) {
         if self.listTableView.selectedRow >= 0 {
+            self.delButton.isEnabled = false
+            
             let selectedRow = self.listTableView.selectedRow
             
             self.listTableView.beginUpdates()
@@ -145,6 +149,12 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
     func tableViewSelectionDidChange(_ notification: Notification) {
         if self.listTableView.selectedRow >= 0 {
             let config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
+            
+            self.configName.isEnabled = true
+            self.host.isEnabled = true
+            self.port.isEnabled = true
+            self.username.isEnabled = true
+            self.password.isEnabled = true
             
             self.configName.stringValue = config.name
             self.host.stringValue = config.hostname
