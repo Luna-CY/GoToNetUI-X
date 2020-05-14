@@ -18,6 +18,8 @@ class PreferencesWindowController: NSWindowController {
     
     @IBOutlet weak var gfwList: NSTextField!
     
+    @IBOutlet weak var ignore: NSTextField!
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         
@@ -54,5 +56,6 @@ class PreferencesWindowController: NSWindowController {
         UserDefaults.standard.set(NSNumber(value: Int(self.localPort.intValue)), forKey: "localPort")
         
         UserDefaults.standard.set(self.gfwList.stringValue, forKey: "gfwList")
+        UserDefaults.standard.set(self.ignore.stringValue, forKey: "ignoreHosts")
     }
 }

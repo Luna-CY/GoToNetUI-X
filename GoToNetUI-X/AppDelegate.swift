@@ -61,9 +61,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      退出应用菜单项动作
      */
     @IBAction func quitAppAction(_ sender: Any) {
-        if ProxyConfigUtil.default.sync(action: "stop") {
-            UserDefaults.standard.set(false, forKey: "isStarted")
-            NSApplication.shared.terminate(self)
+        if UserDefaults.standard.bool(forKey: "isStarted") {
+            if ProxyConfigUtil.default.sync(action: "stop") {
+                UserDefaults.standard.set(false, forKey: "isStarted")
+                NSApplication.shared.terminate(self)
+            }
         }
     }
     
@@ -275,6 +277,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "localAddr": "127.0.0.1",
             "localPort": NSNumber(value: 1280),
             "gfwList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
+            "ignoreHosts": "",
         ])
     }
     
