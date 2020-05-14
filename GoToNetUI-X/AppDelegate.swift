@@ -21,7 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      Main Func
      */
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        if !self.initTools() {
+        if !ProxyConfigUtil.default.install() {
+            NSLog("安装cli-go-to-net命令失败")
             self.startServiceItem.isEnabled = false
         }
         self.registerGlobalConfig()
@@ -39,11 +40,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.flushServerConfigList()
         
-        let selected = UserDefaults.standard.integer(forKey: "selectedServerName")
-        if -1 == selected {
+        if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
             self.startServiceItem.action = nil
         } else if UserDefaults.standard.bool(forKey: "startServiceOnProgram") {
-            if !syncCliCmdService(action: "start") {
+            if !ProxyConfigUtil.default.sync(action: "start") {
                 NSLog("启动服务失败")
                 
                 return
@@ -61,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      退出应用菜单项动作
      */
     @IBAction func quitAppAction(_ sender: Any) {
-        if syncCliCmdService(action: "stop") {
+        if ProxyConfigUtil.default.sync(action: "stop") {
             UserDefaults.standard.set(false, forKey: "isStarted")
             NSApplication.shared.terminate(self)
         }
@@ -80,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        if !syncCliCmdService(action: "start") {
+        if !ProxyConfigUtil.default.sync(action: "start") {
             NSLog("启动服务失败")
             
             return
@@ -102,7 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        if !syncCliCmdService(action: "stop") {
+        if !ProxyConfigUtil.default.sync(action: "stop") {
             NSLog("关闭服务失败")
             
             return
@@ -240,6 +240,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.activate(ignoringOtherApps: true)
     }
     
+    @IBAction func updatePAC(_ sender: NSMenuItem) {
+        sender.isEnabled = false
+        
+        let title = sender.title
+        sender.title = "更新PAC规则列表中..."
+        
+        sender.title = title
+        sender.isEnabled = true
+    }
+    
     /**
      打开日志控制台
      */
@@ -253,17 +263,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /**
-     初始化命令行工具
-     */
-    func initTools() -> Bool {
-        if !installCliCmd() {
-            return false
-        }
-        
-        return true
-    }
-    
-    /**
      注册全局配置字典
      */
     func registerGlobalConfig() {
@@ -272,7 +271,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "isStarted": false,
             "startServiceOnProgram": false,
             "runningMode": "manual",
-            "selectedServerName": NSNumber(value: -1),
+            "selectedServerName": "",
             "localAddr": "127.0.0.1",
             "localPort": NSNumber(value: 1280),
             "gfwList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
@@ -292,16 +291,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             submenu.removeItem(at: index)
         }
         
-        let selected = UserDefaults.standard.integer(forKey: "selectedServerName")
+        let selected = UserDefaults.standard.string(forKey: "selectedServerName")!
         var isFound = false
         var hasValidConfig = false
         
         let serverConfigList = ServerConfigManager.default.getServerConfigList()
-        for (index, serverConfig) in serverConfigList.enumerated() {
+        for (_, serverConfig) in serverConfigList.enumerated() {
             let item = NSMenuItem()
+            item.identifier = NSUserInterfaceItemIdentifier(serverConfig.id)
             item.title = serverConfig.name
             
-            if selected == index {
+            if selected == serverConfig.id {
                 item.state = .on
                 isFound = true
             }
@@ -315,8 +315,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             beginIndex += 1
         }
         
-        if !isFound && -1 != selected {
-            UserDefaults.standard.set(NSNumber(value: -1), forKey: "selectedServerName")
+        if !isFound && "" != selected {
+            UserDefaults.standard.set("", forKey: "selectedServerName")
             self.setStopState()
         }
         
@@ -329,12 +329,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      选择服务器配置
      */
     @IBAction func selectServer(_ sender: NSMenuItem) {
-        guard let submenu = self.serverConfigListItem.submenu else { return }
-        
-        UserDefaults.standard.set(submenu.index(of: sender) - 2, forKey: "selectedServerName")
+        UserDefaults.standard.set(sender.identifier?.rawValue, forKey: "selectedServerName")
         self.startServiceItem.action = #selector(AppDelegate.startServiceAction)
         
-        if !syncCliCmdService(action: "restart") {
+        if !ProxyConfigUtil.default.sync(action: "restart") {
             UserDefaults.standard.set(false, forKey: "isStarted")
             self.setStopState()
             

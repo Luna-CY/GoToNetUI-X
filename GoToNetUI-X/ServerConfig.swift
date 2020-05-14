@@ -12,6 +12,7 @@ import Foundation
  服务器配置结构
  */
 struct ServerConfig : Codable {
+    var id: String
     var name: String
     
     var hostname: String
@@ -32,7 +33,10 @@ struct ServerConfig : Codable {
  服务器配置管理器
  */
 class ServerConfigManager : NSObject {
+    
     static let `default` = ServerConfigManager()
+    
+    private let characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     
     private var list : [ServerConfig] = []
     
@@ -67,6 +71,19 @@ class ServerConfigManager : NSObject {
     }
     
     /**
+     获取配置对象
+     */
+    func getServerConfig(id: String) -> ServerConfig? {
+        for config in self.list {
+            if config.id == id {
+                return config
+            }
+        }
+        
+        return nil
+    }
+    
+    /**
      添加服务器配置
      */
     func addServerConfig(_ serverConfig: ServerConfig) -> Bool {
@@ -79,8 +96,13 @@ class ServerConfigManager : NSObject {
     /**
      删除服务器配置
      */
-    func delServerConfig(_ index: Int) -> Bool {
-        self.list.remove(at: index)
+    func delServerConfig(_ id: String) -> Bool {
+        for (index, config) in self.list.enumerated() {
+            if config.id == id {
+                self.list.remove(at: index)
+            }
+        }
+
         self.sort()
         
         return self.flushToFile()
@@ -97,6 +119,20 @@ class ServerConfigManager : NSObject {
         try! manager.removeItem(atPath: configFilePath)
         
         return manager.createFile(atPath: configFilePath, contents: data, attributes: nil)
+    }
+    
+    /**
+     生成id
+     */
+    func generateId() -> String {
+        var ranStr = ""
+        
+        for _ in 0..<16 {
+            let index = Int(arc4random_uniform(UInt32(self.characters.count)))
+            ranStr.append(self.characters[self.characters.index(self.characters.startIndex, offsetBy: index)])
+        }
+        
+        return ranStr
     }
     
     /**

@@ -42,8 +42,10 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
     
     @IBAction func add(_ sender: Any) {
         let count = ServerConfigManager.default.getServerConfigList().count
+        let id = ServerConfigManager.default.generateId()
         let name = "未命名配置"
-        let config = ServerConfig(name: name, hostname: "", serverPort: 443, username: "", password: "")
+        
+        let config = ServerConfig(id: id, name: name, hostname: "", serverPort: 443, username: "", password: "")
         
         if !ServerConfigManager.default.addServerConfig(config) {
             return
@@ -64,7 +66,7 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
             
             var config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
             
-            if !ServerConfigManager.default.delServerConfig(self.listTableView.selectedRow) {
+            if !ServerConfigManager.default.delServerConfig(config.id) {
                 return
             }
             
@@ -90,10 +92,11 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
             self.delButton.isEnabled = false
             
             let selectedRow = self.listTableView.selectedRow
+            let config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
             
             self.listTableView.beginUpdates()
             
-            _ = ServerConfigManager.default.delServerConfig(self.listTableView.selectedRow)
+            _ = ServerConfigManager.default.delServerConfig(config.id)
             
             self.listTableView.removeRows(at: IndexSet(integer: selectedRow), withAnimation: .effectFade)
             self.listTableView.endUpdates()
@@ -128,7 +131,7 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
             let config = list[row]
             
             if tableColumn == tableView.tableColumns[0] {
-                if UserDefaults.standard.integer(forKey: "selectedServerName") != row {
+                if UserDefaults.standard.string(forKey: "selectedServerName")! != config.id {
                     return nil
                 }
                 

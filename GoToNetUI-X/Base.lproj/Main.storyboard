@@ -741,6 +741,13 @@
                                 <action selector="openPreferences:" target="Voe-Tx-rLC" id="wD1-Jf-ce2"/>
                             </connections>
                         </menuItem>
+                        <menuItem isSeparatorItem="YES" id="z6f-c6-DxJ"/>
+                        <menuItem title="更新PAC规则" id="FCa-RH-bwd">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="updatePAC:" target="Voe-Tx-rLC" id="J84-fK-5tQ"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="cSs-AU-emR"/>
                         <menuItem title="打开日志控制台" id="gYh-sn-2JK">
                             <modifierMask key="keyEquivalentModifierMask"/>
