@@ -121,7 +121,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      */
     @IBAction func pacModeAction(_ sender: Any) {
         if UserDefaults.standard.bool(forKey: "isStarted") {
-            if !NetworkConfigUtil.default.setAutoProxy(true) {
+            if !NetworkConfigUtil.default.setAuto(true) {
                 return
             }
             
@@ -151,7 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      */
     @IBAction func globalModeAction(_ sender: Any) {
         if UserDefaults.standard.bool(forKey: "isStarted") {
-            if !NetworkConfigUtil.default.setGlobalProxy(true) {
+            if !NetworkConfigUtil.default.setGlobal(true) {
                 return
             }
             
@@ -181,7 +181,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      */
     @IBAction func manualModeAction(_ sender: Any) {
         if UserDefaults.standard.bool(forKey: "isStarted") {
-            if !NetworkConfigUtil.default.setManualProxy() {
+            if !NetworkConfigUtil.default.setManual() {
                 return
             }
             
@@ -207,6 +207,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var serverConfigListItem: NSMenuItem!
     @IBOutlet weak var serverConfigListBegin: NSMenuItem!
     @IBOutlet weak var serverConfigListEnd: NSMenuItem!
+    
+    private var serverEditorWindowController : ServerEditorWindowController!
+    
+    /**
+     打开服务器配置编辑窗口
+     */
+    @IBAction func openServerEditor(_ sender: NSMenuItem) {
+        if nil != self.serverEditorWindowController {
+            self.serverEditorWindowController.close()
+        }
+        
+        self.serverEditorWindowController = ServerEditorWindowController(windowNibName: NSNib.Name("ServerEditorWindow"))
+        self.serverEditorWindowController.showWindow(self)
+        
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    private var preferencesWindowController : PreferencesWindowController!
+    
+    /**
+     打开偏好设置面板
+     */
+    @IBAction func openPreferences(_ sender: NSMenuItem) {
+        if nil != self.preferencesWindowController {
+            self.preferencesWindowController.close()
+        }
+        
+        self.preferencesWindowController = PreferencesWindowController(windowNibName: NSNib.Name("PreferencesWindow"))
+        self.preferencesWindowController.showWindow(self)
+        
+        NSApp.activate(ignoringOtherApps: true)
+    }
     
     /**
      打开日志控制台

@@ -1,44 +1,34 @@
 //
-//  PreferencesController.swift
+//  PreferencesWindowController.swift
 //  GoToNetUI-X
 //
-//  Created by Luna on 2020/5/13.
+//  Created by Luna on 2020/5/14.
 //  Copyright © 2020 Luna. All rights reserved.
 //
 
 import Cocoa
 
-class PreferencesController: NSViewController {
+class PreferencesWindowController: NSWindowController {
 
-    @IBOutlet weak var startOnUser: NSButton!
-    
     @IBOutlet weak var startServiceOnProgram: NSButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var localAddr: NSTextField!
+    
+    @IBOutlet weak var localPort: NSTextField!
+    
+    @IBOutlet weak var gfwList: NSTextField!
+    
+    override func windowDidLoad() {
+        super.windowDidLoad()
         
-        self.startOnUser.isEnabled = false
         self.startServiceOnProgram.state = UserDefaults.standard.bool(forKey: "startServiceOnProgram") ? .on : .off
         
         self.localAddr.stringValue = UserDefaults.standard.string(forKey: "localAddr")!
         self.localPort.stringValue = UserDefaults.standard.string(forKey: "localPort")!
-        self.gfwListAddr.stringValue = UserDefaults.standard.string(forKey: "gfwList")!
+        self.gfwList.stringValue = UserDefaults.standard.string(forKey: "gfwList")!
     }
     
-    /**
-     切换开机启动项
-     */
-    @IBAction func switchStartOnUser(_ sender: NSButton) {
-        if sender.state == .on {
-            UserDefaults.standard.set(true, forKey: "startOnUser")
-        }
-        
-        if sender.state == .off {
-            UserDefaults.standard.set(false, forKey: "startOnUser")
-        }
-    }
-    
-    /**
+    /*
      切换服务启动项
      */
     @IBAction func switchStartServiceOnProgram(_ sender: NSButton) {
@@ -51,18 +41,10 @@ class PreferencesController: NSViewController {
         }
     }
     
-    @IBOutlet weak var localAddr: NSTextField!
-    
-    @IBOutlet weak var localPort: NSTextField!
-    
-    @IBOutlet weak var gfwListAddr: NSTextField!
-    
-    @IBOutlet weak var saveProxyButton: NSButton!
-    
     /**
      保存代理设置
      */
-    @IBAction func saveProxy(_ sender: NSButton) {
+    @IBAction func save(_ sender: Any) {
         UserDefaults.standard.set(self.localAddr.stringValue, forKey: "localAddr")
         
         if 0 == self.localPort.intValue || self.localPort.intValue > 65535 {
@@ -71,6 +53,6 @@ class PreferencesController: NSViewController {
         
         UserDefaults.standard.set(NSNumber(value: Int(self.localPort.intValue)), forKey: "localPort")
         
-        UserDefaults.standard.set(self.gfwListAddr.stringValue, forKey: "gfwList")
+        UserDefaults.standard.set(self.gfwList.stringValue, forKey: "gfwList")
     }
 }

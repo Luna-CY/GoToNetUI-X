@@ -136,11 +136,11 @@ func stopCliCmdService() -> Bool {
 func syncCliCmdService(action: String) -> Bool {
     switch action {
     case "stop":
-        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAutoProxy(false) {
+        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAuto(false) {
             return false
         }
         
-        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobalProxy(false) {
+        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobal(false) {
             return false
         }
         
@@ -166,11 +166,11 @@ func syncCliCmdService(action: String) -> Bool {
             return false
         }
         
-        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAutoProxy(true) {
+        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAuto(true) {
             return false
         }
         
-        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobalProxy(true) {
+        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobal(true) {
             return false
         }
         
@@ -196,11 +196,11 @@ func syncCliCmdService(action: String) -> Bool {
             return false
         }
         
-        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAutoProxy(true) {
+        if "auto" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setAuto(true) {
             return false
         }
         
-        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobalProxy(true) {
+        if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.setGlobal(true) {
             return false
         }
         

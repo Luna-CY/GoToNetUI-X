@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		BD59ADD1246C0F33008AC2F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD59ADD0246C0F33008AC2F1 /* SystemConfiguration.framework */; };
 		BD59ADD3246C0F40008AC2F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD59ADD2246C0F40008AC2F1 /* Security.framework */; };
+		BD651329246CEE7E00CC0354 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD651328246CEE7E00CC0354 /* PreferencesWindow.xib */; };
+		BD65132B246CEEA600CC0354 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65132A246CEEA600CC0354 /* PreferencesWindowController.swift */; };
+		BD65132E246D119500CC0354 /* ServerEditorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD65132D246D119500CC0354 /* ServerEditorWindow.xib */; };
+		BD651330246D126C00CC0354 /* ServerEditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65132F246D126C00CC0354 /* ServerEditorWindowController.swift */; };
 		BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */; };
 		BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */; };
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
 		BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D002466C4C000DAD8C9 /* constants.swift */; };
-		BDB27D0B246B8EB400DAD8C9 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D0A246B8EB400DAD8C9 /* Preferences.swift */; };
-		BDB27D0D246B8EFE00DAD8C9 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D0C246B8EFE00DAD8C9 /* PreferencesController.swift */; };
 		BDB27D0F246BC47900DAD8C9 /* NetworkConfigUitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */; };
 		F87F29C52466EFB30054EF26 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F29C42466EFB30054EF26 /* utils.swift */; };
 		F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */; };
@@ -23,13 +25,15 @@
 		F8A294D32467BE8800C905D7 /* cli-go-to-net in Resources */ = {isa = PBXBuildFile; fileRef = F8A294D12467BE8800C905D7 /* cli-go-to-net */; };
 		F8A294DD2467EE1200C905D7 /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A294DC2467EE1200C905D7 /* ServerConfig.swift */; };
 		F8A294E02468005800C905D7 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A294DF2468005800C905D7 /* NetworkExtension.framework */; };
-		F8A294E424697CA800C905D7 /* ServerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A294E324697CA800C905D7 /* ServerEditor.swift */; };
-		F8A294E624698A8B00C905D7 /* ServerEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A294E524698A8B00C905D7 /* ServerEditorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BD59ADD0246C0F33008AC2F1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BD59ADD2246C0F40008AC2F1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BD651328246CEE7E00CC0354 /* PreferencesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		BD65132A246CEEA600CC0354 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		BD65132D246D119500CC0354 /* ServerEditorWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServerEditorWindow.xib; sourceTree = "<group>"; };
+		BD65132F246D126C00CC0354 /* ServerEditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditorWindowController.swift; sourceTree = "<group>"; };
 		BDB27CC42466968D00DAD8C9 /* GoToNetUI-X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GoToNetUI-X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,8 +41,6 @@
 		BDB27CD32466968F00DAD8C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDB27CD42466968F00DAD8C9 /* GoToNetUI_X.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoToNetUI_X.entitlements; sourceTree = "<group>"; };
 		BDB27D002466C4C000DAD8C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
-		BDB27D0A246B8EB400DAD8C9 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		BDB27D0C246B8EFE00DAD8C9 /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigUitl.swift; sourceTree = "<group>"; };
 		F87F29C42466EFB30054EF26 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-cli-go-to-net.sh"; sourceTree = "<group>"; };
@@ -47,8 +49,6 @@
 		F8A294D12467BE8800C905D7 /* cli-go-to-net */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "cli-go-to-net"; sourceTree = "<group>"; };
 		F8A294DC2467EE1200C905D7 /* ServerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
 		F8A294DF2468005800C905D7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
-		F8A294E324697CA800C905D7 /* ServerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditor.swift; sourceTree = "<group>"; };
-		F8A294E524698A8B00C905D7 /* ServerEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +103,10 @@
 		BDB27D0224691A0100DAD8C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				F8A294E324697CA800C905D7 /* ServerEditor.swift */,
-				F8A294E524698A8B00C905D7 /* ServerEditorController.swift */,
-				BDB27D0A246B8EB400DAD8C9 /* Preferences.swift */,
-				BDB27D0C246B8EFE00DAD8C9 /* PreferencesController.swift */,
+				BD651328246CEE7E00CC0354 /* PreferencesWindow.xib */,
+				BD65132A246CEEA600CC0354 /* PreferencesWindowController.swift */,
+				BD65132D246D119500CC0354 /* ServerEditorWindow.xib */,
+				BD65132F246D126C00CC0354 /* ServerEditorWindowController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -201,10 +201,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD651329246CEE7E00CC0354 /* PreferencesWindow.xib in Resources */,
 				F8A294D22467BE8800C905D7 /* install-cli-go-to-net.sh in Resources */,
 				F8A294D32467BE8800C905D7 /* cli-go-to-net in Resources */,
 				F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */,
 				F8A294CF2467B90D00C905D7 /* stop-cli-go-to-net.sh in Resources */,
+				BD65132E246D119500CC0354 /* ServerEditorWindow.xib in Resources */,
 				BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */,
 				BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */,
 			);
@@ -217,15 +219,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD651330246D126C00CC0354 /* ServerEditorWindowController.swift in Sources */,
 				BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */,
-				BDB27D0B246B8EB400DAD8C9 /* Preferences.swift in Sources */,
+				BD65132B246CEEA600CC0354 /* PreferencesWindowController.swift in Sources */,
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
 				F8A294DD2467EE1200C905D7 /* ServerConfig.swift in Sources */,
-				BDB27D0D246B8EFE00DAD8C9 /* PreferencesController.swift in Sources */,
 				F87F29C52466EFB30054EF26 /* utils.swift in Sources */,
-				F8A294E424697CA800C905D7 /* ServerEditor.swift in Sources */,
 				BDB27D0F246BC47900DAD8C9 /* NetworkConfigUitl.swift in Sources */,
-				F8A294E624698A8B00C905D7 /* ServerEditorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

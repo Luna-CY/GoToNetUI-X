@@ -1,15 +1,14 @@
 //
-//  ServerEditorController.swift
+//  ServerEditorWindowController.swift
 //  GoToNetUI-X
 //
-//  Created by ronghui.huo on 2020/5/11.
+//  Created by Luna on 2020/5/14.
 //  Copyright © 2020 Luna. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 
-class ServerEditorController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, NSTableViewDelegate {
     
     @IBOutlet weak var configName: NSTextField!
     
@@ -21,8 +20,16 @@ class ServerEditorController: NSViewController, NSTableViewDataSource, NSTableVi
     
     @IBOutlet weak var password: NSSecureTextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var addButton: NSButton!
+    
+    @IBOutlet weak var saveButton: NSButton!
+    
+    @IBOutlet weak var delButton: NSButton!
+    
+    @IBOutlet weak var listTableView: NSTableView!
+    
+    override func windowDidLoad() {
+        super.windowDidLoad()
         
         self.listTableView.dataSource = self
         self.listTableView.delegate = self
@@ -30,17 +37,10 @@ class ServerEditorController: NSViewController, NSTableViewDataSource, NSTableVi
         self.saveButton.isEnabled = false
         self.delButton.isEnabled = false
         
-        self.listTableView.selectRowIndexes(IndexSet(arrayLiteral: 0), byExtendingSelection: true)
+        self.listTableView.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: true)
     }
     
-    @IBOutlet weak var saveButton: NSButton!
-    @IBOutlet weak var delButton: NSButton!
-    
-    
-    /**
-     新增配置
-     */
-    @IBAction func add(_ sender: NSButton) {
+    @IBAction func add(_ sender: Any) {
         let count = ServerConfigManager.default.getServerConfigList().count
         let name = "未命名配置"
         let config = ServerConfig(name: name, hostname: "", serverPort: 443, username: "", password: "")
@@ -53,13 +53,12 @@ class ServerEditorController: NSViewController, NSTableViewDataSource, NSTableVi
         self.listTableView.insertRows(at: IndexSet(integer: count), withAnimation: .effectFade)
         self.listTableView.endUpdates()
         
+        self.listTableView.selectRowIndexes(IndexSet(integer: count), byExtendingSelection: false)
+        
         NotificationCenter.default.post(name: NotifyServerConfigListChange, object: nil)
     }
     
-    /**
-     保存配置
-     */
-    @IBAction func save(_ sender: NSButton) {
+    @IBAction func save(_ sender: Any) {
         if self.listTableView.selectedRow >= 0 {
             var config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
             
@@ -84,25 +83,22 @@ class ServerEditorController: NSViewController, NSTableViewDataSource, NSTableVi
         }
     }
     
-    /**
-     删除配置
-     */
-    @IBAction func del(_ sender: NSButton) {
+    @IBAction func del(_ sender: Any) {
         if self.listTableView.selectedRow >= 0 {
+            let selectedRow = self.listTableView.selectedRow
+            
             self.listTableView.beginUpdates()
             
             _ = ServerConfigManager.default.delServerConfig(self.listTableView.selectedRow)
             
-            self.listTableView.removeRows(at: IndexSet(arrayLiteral: self.listTableView.selectedRow), withAnimation: .effectFade)
-            self.listTableView.selectRowIndexes(IndexSet(arrayLiteral: self.listTableView.selectedRow > 0 ? self.listTableView.selectedRow - 1 : 0), byExtendingSelection: true)
-            
+            self.listTableView.removeRows(at: IndexSet(integer: selectedRow), withAnimation: .effectFade)
             self.listTableView.endUpdates()
+            
+            self.listTableView.selectRowIndexes(IndexSet(integer: (selectedRow > 0 ? selectedRow - 1 : 0)), byExtendingSelection: false)
             
             NotificationCenter.default.post(name: NotifyServerConfigListChange, object: nil)
         }
     }
-    
-    @IBOutlet weak var listTableView: NSTableView!
     
     /**
      返回表格总行数
@@ -160,5 +156,4 @@ class ServerEditorController: NSViewController, NSTableViewDataSource, NSTableVi
             self.delButton.isEnabled = true
         }
     }
-    
 }

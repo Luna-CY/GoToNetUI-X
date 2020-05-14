@@ -24,14 +24,14 @@ class NetworkConfigUtil : NSObject {
     /**
      设置为pac自动模式
      */
-    func setAutoProxy(_ b : Bool) -> Bool {
+    func setAuto(_ b : Bool) -> Bool {
         return true
     }
     
     /**
      设置全局代理状态
      */
-    func setGlobalProxy(_ b : Bool) -> Bool {
+    func setGlobal(_ b : Bool) -> Bool {
         let (scp, services) = self.getAuthorization()
         if nil == scp || nil == services {
             return false
@@ -71,12 +71,12 @@ class NetworkConfigUtil : NSObject {
     /**
      设置为手动代理模式
      */
-    func setManualProxy() -> Bool {
-        if !self.setGlobalProxy(false) {
+    func setManual() -> Bool {
+        if !self.setGlobal(false) {
             return false
         }
         
-        if !self.setAutoProxy(false) {
+        if !self.setAuto(false) {
             return false
         }
         
