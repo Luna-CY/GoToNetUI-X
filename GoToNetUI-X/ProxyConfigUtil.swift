@@ -12,7 +12,7 @@ let cliCmdPath = NSHomeDirectory() + SupportDir + "cli-go-to-net"
 
 class ProxyConfigUtil : NSObject {
     
-    static let `default` : ProxyConfigUtil = ProxyConfigUtil()
+    static let `default` = ProxyConfigUtil()
     
     private let cli = NSHomeDirectory() + SupportDir + "cli-go-to-net"
     
