@@ -64,9 +64,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if UserDefaults.standard.bool(forKey: "isStarted") {
             if ProxyConfigUtil.default.sync(action: "stop") {
                 UserDefaults.standard.set(false, forKey: "isStarted")
-                NSApplication.shared.terminate(self)
             }
         }
+        
+        NSApplication.shared.terminate(self)
     }
     
     /**
