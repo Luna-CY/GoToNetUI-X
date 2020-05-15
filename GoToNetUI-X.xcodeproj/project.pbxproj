@@ -18,6 +18,7 @@
 		BD65132B246CEEA600CC0354 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65132A246CEEA600CC0354 /* PreferencesWindowController.swift */; };
 		BD65132E246D119500CC0354 /* ServerEditorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD65132D246D119500CC0354 /* ServerEditorWindow.xib */; };
 		BD651330246D126C00CC0354 /* ServerEditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65132F246D126C00CC0354 /* ServerEditorWindowController.swift */; };
+		BD9D96E2246EA07000A1660E /* gfwlist.txt in Resources */ = {isa = PBXBuildFile; fileRef = BD9D96D9246EA07000A1660E /* gfwlist.txt */; };
 		BD9D97FC246E9A3000105512 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD16C9EF246E88A100F5523D /* GCDWebServers.framework */; };
 		BD9D97FD246E9A3000105512 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BD16C9EF246E88A100F5523D /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */; };
@@ -114,6 +115,7 @@
 		BD65132A246CEEA600CC0354 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		BD65132D246D119500CC0354 /* ServerEditorWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServerEditorWindow.xib; sourceTree = "<group>"; };
 		BD65132F246D126C00CC0354 /* ServerEditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerEditorWindowController.swift; sourceTree = "<group>"; };
+		BD9D96D9246EA07000A1660E /* gfwlist.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gfwlist.txt; sourceTree = "<group>"; };
 		BDB27CC42466968D00DAD8C9 /* GoToNetUI-X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GoToNetUI-X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		F8A294CA24670CA300C905D7 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				BD9D96D9246EA07000A1660E /* gfwlist.txt */,
 				BD16C9BC246E48FA00F5523D /* template.js */,
 				F8A294CB24670CB200C905D7 /* go-to-net */,
 			);
@@ -371,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD9D96E2246EA07000A1660E /* gfwlist.txt in Resources */,
 				BD16C9BD246E48FA00F5523D /* template.js in Resources */,
 				BD651329246CEE7E00CC0354 /* PreferencesWindow.xib in Resources */,
 				F8A294D22467BE8800C905D7 /* install-cli-go-to-net.sh in Resources */,

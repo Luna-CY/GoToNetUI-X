@@ -31,6 +31,9 @@ class ProxyAutoConfigUtil : NSObject {
      生成pac文件
      */
     private func generate(_ sendNotify: Bool) {
+        if !FileManager.default.fileExists(atPath: UserConfigDir + GFWListFileName) {
+            try! FileManager.default.copyItem(atPath: Bundle.main.path(forResource: "gfwlist", ofType: "txt")!, toPath: UserConfigDir + GFWListFileName)
+        }
         let base64Encoded = try! String(contentsOfFile: UserConfigDir + GFWListFileName)
         
         let rules = String(data: Data(base64Encoded: base64Encoded, options: .ignoreUnknownCharacters)!, encoding: .utf8)?.components(separatedBy: .newlines)

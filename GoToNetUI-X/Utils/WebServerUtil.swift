@@ -48,6 +48,10 @@ class WebServerUtil : NSObject {
      启动服务器
      */
     func start() {
+        if !FileManager.default.fileExists(atPath: UserConfigDir + PACFileName) {
+            ProxyAutoConfigUtil.default.sync(false)
+        }
+        
         self.server.addDefaultHandler(forMethod: "GET", request: GCDWebServerRequest.self, processBlock: {request in
             return GCDWebServerDataResponse(html: "<html><head><title>GCD Web Server</title></head><body></body></html>")
         })

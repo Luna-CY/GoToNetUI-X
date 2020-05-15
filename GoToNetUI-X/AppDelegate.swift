@@ -81,10 +81,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
      启动服务菜单项动作
      */
     @IBAction func startServiceAction(_ sender: Any) {
-        if UserDefaults.standard.bool(forKey: "isStarted") {
-            return
-        }
-        
         if !ProxyConfigUtil.default.sync(action: "start") {
             NSLog("启动服务失败")
             
@@ -105,10 +101,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
      关闭服务菜单项动作
      */
     @IBAction func closeServiceAction(_ sender: Any) {
-        if !UserDefaults.standard.bool(forKey: "isStarted") {
-            return
-        }
-        
         if !ProxyConfigUtil.default.sync(action: "stop") {
             NSLog("关闭服务失败")
             
