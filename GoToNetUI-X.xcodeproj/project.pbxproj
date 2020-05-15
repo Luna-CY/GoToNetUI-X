@@ -11,7 +11,6 @@
 		BD16C9BF246E4B4200F5523D /* CustomPACWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16C9BE246E4B4200F5523D /* CustomPACWindowController.swift */; };
 		BD16C9C1246E4B5200F5523D /* CustomPACWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD16C9C0246E4B5200F5523D /* CustomPACWindow.xib */; };
 		BD16C9C3246E5CC600F5523D /* WindowControllerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16C9C2246E5CC600F5523D /* WindowControllerUtil.swift */; };
-		BD16C9F6246E88C400F5523D /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD16C9EF246E88A100F5523D /* GCDWebServers.framework */; };
 		BD16C9F9246E8A7700F5523D /* WebServerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD16C9F8246E8A7700F5523D /* WebServerUtil.swift */; };
 		BD59ADD1246C0F33008AC2F1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD59ADD0246C0F33008AC2F1 /* SystemConfiguration.framework */; };
 		BD59ADD3246C0F40008AC2F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD59ADD2246C0F40008AC2F1 /* Security.framework */; };
@@ -19,6 +18,8 @@
 		BD65132B246CEEA600CC0354 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65132A246CEEA600CC0354 /* PreferencesWindowController.swift */; };
 		BD65132E246D119500CC0354 /* ServerEditorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD65132D246D119500CC0354 /* ServerEditorWindow.xib */; };
 		BD651330246D126C00CC0354 /* ServerEditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65132F246D126C00CC0354 /* ServerEditorWindowController.swift */; };
+		BD9D97FC246E9A3000105512 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD16C9EF246E88A100F5523D /* GCDWebServers.framework */; };
+		BD9D97FD246E9A3000105512 /* GCDWebServers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BD16C9EF246E88A100F5523D /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27CC72466968D00DAD8C9 /* AppDelegate.swift */; };
 		BDB27CCC2466968F00DAD8C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CCB2466968F00DAD8C9 /* Assets.xcassets */; };
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
@@ -86,6 +87,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BD9D97FE246E9A3000105512 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BD9D97FD246E9A3000105512 /* GCDWebServers.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BD16C9BC246E48FA00F5523D /* template.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = template.js; sourceTree = "<group>"; };
 		BD16C9BE246E4B4200F5523D /* CustomPACWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPACWindowController.swift; sourceTree = "<group>"; };
@@ -122,8 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD16C9F6246E88C400F5523D /* GCDWebServers.framework in Frameworks */,
 				BD59ADD1246C0F33008AC2F1 /* SystemConfiguration.framework in Frameworks */,
+				BD9D97FC246E9A3000105512 /* GCDWebServers.framework in Frameworks */,
 				BD59ADD3246C0F40008AC2F1 /* Security.framework in Frameworks */,
 				F8A294E02468005800C905D7 /* NetworkExtension.framework in Frameworks */,
 			);
@@ -246,6 +261,7 @@
 				BDB27CC02466968D00DAD8C9 /* Sources */,
 				BDB27CC12466968D00DAD8C9 /* Frameworks */,
 				BDB27CC22466968D00DAD8C9 /* Resources */,
+				BD9D97FE246E9A3000105512 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

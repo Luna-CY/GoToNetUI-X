@@ -66,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 UserDefaults.standard.set(false, forKey: "isStarted")
             }
             
-            WebServerUtil.default.stop()
+            WebServerUtil.default.sync()
         }
         
         NSApplication.shared.terminate(self)
