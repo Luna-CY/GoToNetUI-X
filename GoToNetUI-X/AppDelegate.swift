@@ -64,6 +64,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 return
             }
             
+            if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+                _ = PrivoxyConfigUtil.default.sync(action: "start")
+            }
+            
             self.setStartState()
         }
         
