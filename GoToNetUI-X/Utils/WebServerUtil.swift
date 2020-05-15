@@ -48,7 +48,7 @@ class WebServerUtil : NSObject {
      启动服务器
      */
     func start() {
-        if !FileManager.default.fileExists(atPath: UserConfigDir + PACFileName) {
+        if !FileManager.default.fileExists(atPath: SupportDir + ProxyAutoConfigUtil.default.pacFileName) {
             ProxyAutoConfigUtil.default.sync(false)
         }
         
@@ -57,10 +57,10 @@ class WebServerUtil : NSObject {
         })
         
         self.server.addHandler(forMethod: "GET", pathRegex: "/proxy.pac", request: GCDWebServerRequest.self, processBlock: {request in
-            return GCDWebServerDataResponse(data: NSData(contentsOfFile: UserConfigDir + PACFileName)! as Data, contentType: "application/x-ns-proxy-autoconfig")
+            return GCDWebServerDataResponse(data: NSData(contentsOfFile: SupportDir + ProxyAutoConfigUtil.default.pacFileName)! as Data, contentType: "application/x-ns-proxy-autoconfig")
         })
         
-        if self.server.start(withPort: UInt(UserDefaults.standard.integer(forKey: "pacPort")), bonjourName: nil) {
+        if self.server.start(withPort: UInt(UserDefaults.standard.integer(forKey: "pac.port")), bonjourName: nil) {
             self.isStarted = true
         }
     }

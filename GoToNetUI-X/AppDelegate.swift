@@ -24,7 +24,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         NSUserNotificationCenter.default.delegate = self
         
         if !ProxyConfigUtil.default.install() {
-            NSLog("安装cli-go-to-net命令失败")
+            let message = NSUserNotification()
+            message.title = "异常错误"
+            message.subtitle = "安装代理客户端失败"
+            NSUserNotificationCenter.default.deliver(message)
+            
+            self.startServiceItem.isEnabled = false
+        }
+        
+        if !PrivoxyConfigUtil.default.install() {
+            let message = NSUserNotification()
+            message.title = "异常错误"
+            message.subtitle = "安装HTTP服务器失败"
+            NSUserNotificationCenter.default.deliver(message)
+            
             self.startServiceItem.isEnabled = false
         }
         self.registerGlobalConfig()
@@ -66,6 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 UserDefaults.standard.set(false, forKey: "isStarted")
             }
             
+            _ = PrivoxyConfigUtil.default.sync(action: "stop")
             WebServerUtil.default.sync()
         }
         
@@ -89,6 +103,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         self.setStartState()
         
+        _ = PrivoxyConfigUtil.default.sync(action: "start")
         WebServerUtil.default.sync()
     }
     
@@ -109,6 +124,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         self.setStopState()
         
+        _ = PrivoxyConfigUtil.default.sync(action: "stop")
         WebServerUtil.default.sync()
     }
     
@@ -279,9 +295,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "startServiceOnProgram": false,
             "runningMode": "manual",
             "selectedServerName": "",
-            "localAddr": "127.0.0.1",
-            "localPort": NSNumber(value: 1280),
-            "pacPort": NSNumber(value: 1281),
+            "socks.listen": "127.0.0.1",
+            "socks.port": NSNumber(value: 1280),
+            "pac.port": NSNumber(value: 1281),
+            "privoxy.listen": "127.0.0.1",
+            "privoxy.port": NSNumber(value: 1282),
             "gfwList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
             "ignoreHosts": "127.0.0.1, localhost, 192.168.0.0/16, 10.0.0.0/8, FE80::/64, ::1, FD00::/8",
         ])

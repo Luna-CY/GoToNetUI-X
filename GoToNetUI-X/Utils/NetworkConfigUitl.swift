@@ -76,7 +76,7 @@ class NetworkConfigUtil : NSObject {
         proxies.setObject(NSNumber(value: 0), forKey: SystemConfiguration.kSCPropNetProxiesHTTPEnable as NSString)
         proxies.setObject(NSNumber(value: 0), forKey: SystemConfiguration.kSCPropNetProxiesHTTPSEnable as NSString)
         
-        let url = String.init(format: "http://localhost:%@/proxy.pac", String(UserDefaults.standard.integer(forKey: "pacPort")))
+        let url = String.init(format: "http://localhost:%@/proxy.pac", String(UserDefaults.standard.integer(forKey: "pac.port")))
         
         proxies.setObject(NSNumber(value: 1), forKey: SystemConfiguration.kSCPropNetProxiesProxyAutoConfigEnable as NSString)
         proxies.setObject(url as NSString, forKey: SystemConfiguration.kSCPropNetProxiesProxyAutoConfigURLString as NSString)
@@ -103,8 +103,8 @@ class NetworkConfigUtil : NSObject {
         proxies.setObject(NSNumber(value: 0), forKey: SystemConfiguration.kSCPropNetProxiesHTTPSEnable as NSString)
         
         proxies.setObject(NSNumber(value: 1), forKey: SystemConfiguration.kSCPropNetProxiesSOCKSEnable as NSString)
-        proxies.setObject(UserDefaults.standard.string(forKey: "localAddr")!, forKey: SystemConfiguration.kSCPropNetProxiesSOCKSProxy as NSString)
-        proxies.setObject(NSNumber(value: UserDefaults.standard.integer(forKey: "localPort")), forKey: SystemConfiguration.kSCPropNetProxiesSOCKSPort as NSString)
+        proxies.setObject(UserDefaults.standard.string(forKey: "socks.listen")!, forKey: SystemConfiguration.kSCPropNetProxiesSOCKSProxy as NSString)
+        proxies.setObject(NSNumber(value: UserDefaults.standard.integer(forKey: "socks.port")), forKey: SystemConfiguration.kSCPropNetProxiesSOCKSPort as NSString)
         proxies.setObject(self.getIgnoreHosts().allObjects, forKey: SystemConfiguration.kSCPropNetProxiesExceptionsList as NSString)
         
         self.setProxy(proxies: proxies)

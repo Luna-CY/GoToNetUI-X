@@ -9,19 +9,11 @@
 import Foundation
 
 let AppName = "GoToNetUI-X"
-let SupportDir = "/Library/Application Support/" + AppName + "/"
+let SupportDir = NSHomeDirectory() + "/Library/Application Support/" + AppName + "/"
 let UserConfigDir = NSHomeDirectory() + "/.config/" + AppName + "/"
-
-let LaunchAgentDir = "/Library/LaunchAgents/"
-let LaunchAgentCliCmdName = "xin.luna.cli-go-to-net.plist"
-let ServerConfigFileName = "server-config.json"
-let GFWListFileName = "gfwlist.txt"
-let UserRulesFileName = "user-rules.txt"
-let PACFileName = "proxy.pac"
+let LaunchAgentDir = NSHomeDirectory() + "/Library/LaunchAgents/"
 
 let NotifyPreferencesChange = Notification.Name("NotifyPreferencesChange")
-
 let NotifyServerConfigListChange = Notification.Name("NotifyServerConfigListChange")
-
 let NotifyPACRuleChange = Notification.Name("NotifyPACRuleChange")
 let NotifyPACUpdate = Notification.Name("NotifyPACUpdate")

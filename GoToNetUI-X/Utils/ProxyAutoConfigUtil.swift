@@ -12,6 +12,12 @@ class ProxyAutoConfigUtil : NSObject {
     
     static let `default` = ProxyAutoConfigUtil()
     
+    public let userRuleFileName = "user-rules.txt"
+    
+    public let pacFileName = "proxy.pac"
+    
+    private let gfwList = "gfwlist.txt"
+    
     private override init() {
         super.init()
     }
@@ -19,7 +25,7 @@ class ProxyAutoConfigUtil : NSObject {
     /**
      执行同步动作
      */
-    func sync(_ force : Bool) {
+    public func sync(_ force : Bool) {
         if force {
             self.download(UserDefaults.standard.string(forKey: "gfwList")!)
         } else {
@@ -31,10 +37,10 @@ class ProxyAutoConfigUtil : NSObject {
      生成pac文件
      */
     private func generate(_ sendNotify: Bool) {
-        if !FileManager.default.fileExists(atPath: UserConfigDir + GFWListFileName) {
-            try! FileManager.default.copyItem(atPath: Bundle.main.path(forResource: "gfwlist", ofType: "txt")!, toPath: UserConfigDir + GFWListFileName)
+        if !FileManager.default.fileExists(atPath: SupportDir + self.gfwList) {
+            try! FileManager.default.copyItem(atPath: Bundle.main.path(forResource: "gfwlist", ofType: "txt")!, toPath: SupportDir + self.gfwList)
         }
-        let base64Encoded = try! String(contentsOfFile: UserConfigDir + GFWListFileName)
+        let base64Encoded = try! String(contentsOfFile: SupportDir + self.gfwList)
         
         let rules = String(data: Data(base64Encoded: base64Encoded, options: .ignoreUnknownCharacters)!, encoding: .utf8)?.components(separatedBy: .newlines)
         let userRules = self.getUserRules().components(separatedBy: .newlines)
@@ -89,7 +95,7 @@ class ProxyAutoConfigUtil : NSObject {
             
             // Replace __SOCKS5ADDR__ palcholder in pac js
             var sin6 = sockaddr_in6()
-            let socks5Address = UserDefaults.standard.string(forKey: "localAddr")!
+            let socks5Address = UserDefaults.standard.string(forKey: "socks.listen")!
             if socks5Address.withCString({ cstring in inet_pton(AF_INET6, cstring, &sin6.sin6_addr) }) == 1 {
                 jsStr = jsStr!.replacingOccurrences(of: "__SOCKS5ADDR__"
                     , with: "[\(socks5Address)]")
@@ -100,7 +106,7 @@ class ProxyAutoConfigUtil : NSObject {
             
             // Write the pac js to file.
             try jsStr!.data(using: String.Encoding.utf8)?
-                .write(to: URL(fileURLWithPath: UserConfigDir + PACFileName), options: .atomic)
+                .write(to: URL(fileURLWithPath: SupportDir + self.pacFileName), options: .atomic)
             
         } catch {
             success = false
@@ -115,8 +121,8 @@ class ProxyAutoConfigUtil : NSObject {
      获取用户规则
      */
     private func getUserRules() -> String {
-        if FileManager.default.fileExists(atPath: UserConfigDir + UserRulesFileName) {
-            return try! String(contentsOfFile: UserConfigDir + UserRulesFileName, encoding: .utf8)
+        if FileManager.default.fileExists(atPath: SupportDir + self.userRuleFileName) {
+            return try! String(contentsOfFile: SupportDir + self.userRuleFileName, encoding: .utf8)
         }
         
         return ""
@@ -144,7 +150,7 @@ class ProxyAutoConfigUtil : NSObject {
         let task = URLSession.shared.dataTask(with: request) { (d, _, e) in
             if nil == e && nil != d {
                 let base64Encoded = String(data: d!, encoding: .utf8)!
-                try! base64Encoded.write(toFile: UserConfigDir + GFWListFileName, atomically: true, encoding: .utf8)
+                try! base64Encoded.write(toFile: SupportDir + self.gfwList, atomically: true, encoding: .utf8)
                 
                 self.generate(true)
             } else {

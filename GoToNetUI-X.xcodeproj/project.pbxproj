@@ -26,6 +26,12 @@
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
 		BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D002466C4C000DAD8C9 /* constants.swift */; };
 		BDB27D0F246BC47900DAD8C9 /* NetworkConfigUitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */; };
+		F82DA2A9246EE3580078921D /* privoxy in Resources */ = {isa = PBXBuildFile; fileRef = F82DA29B246EE3570078921D /* privoxy */; };
+		F82DA2AA246EE3580078921D /* privoxy.template.config in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A4246EE3570078921D /* privoxy.template.config */; };
+		F82DA2AC246EE3580078921D /* install-privoxy.sh in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A6246EE3580078921D /* install-privoxy.sh */; };
+		F82DA2AD246EE3580078921D /* start-privoxy.sh in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A7246EE3580078921D /* start-privoxy.sh */; };
+		F82DA2AE246EE3580078921D /* stop-privoxy.sh in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A8246EE3580078921D /* stop-privoxy.sh */; };
+		F82DA2B1246EE5D10078921D /* PrivoxyConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */; };
 		F8772ADD246D896B00F0E7BB /* ProxyAutoConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8772ADC246D896B00F0E7BB /* ProxyAutoConfigUtil.swift */; };
 		F87F29C52466EFB30054EF26 /* ProxyConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F29C42466EFB30054EF26 /* ProxyConfigUtil.swift */; };
 		F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */; };
@@ -124,6 +130,12 @@
 		BDB27CD42466968F00DAD8C9 /* GoToNetUI_X.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoToNetUI_X.entitlements; sourceTree = "<group>"; };
 		BDB27D002466C4C000DAD8C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigUitl.swift; sourceTree = "<group>"; };
+		F82DA29B246EE3570078921D /* privoxy */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = privoxy; sourceTree = "<group>"; };
+		F82DA2A4246EE3570078921D /* privoxy.template.config */ = {isa = PBXFileReference; lastKnownFileType = text; path = privoxy.template.config; sourceTree = "<group>"; };
+		F82DA2A6246EE3580078921D /* install-privoxy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-privoxy.sh"; sourceTree = "<group>"; };
+		F82DA2A7246EE3580078921D /* start-privoxy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-privoxy.sh"; sourceTree = "<group>"; };
+		F82DA2A8246EE3580078921D /* stop-privoxy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "stop-privoxy.sh"; sourceTree = "<group>"; };
+		F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivoxyConfigUtil.swift; sourceTree = "<group>"; };
 		F8772ADC246D896B00F0E7BB /* ProxyAutoConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyAutoConfigUtil.swift; sourceTree = "<group>"; };
 		F87F29C42466EFB30054EF26 /* ProxyConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyConfigUtil.swift; sourceTree = "<group>"; };
 		F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-cli-go-to-net.sh"; sourceTree = "<group>"; };
@@ -172,6 +184,7 @@
 				F8772ADC246D896B00F0E7BB /* ProxyAutoConfigUtil.swift */,
 				BD16C9C2246E5CC600F5523D /* WindowControllerUtil.swift */,
 				BD16C9F8246E8A7700F5523D /* WebServerUtil.swift */,
+				F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -223,9 +236,22 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		F82DA2AF246EE3740078921D /* privoxy */ = {
+			isa = PBXGroup;
+			children = (
+				F82DA2A6246EE3580078921D /* install-privoxy.sh */,
+				F82DA29B246EE3570078921D /* privoxy */,
+				F82DA2A4246EE3570078921D /* privoxy.template.config */,
+				F82DA2A7246EE3580078921D /* start-privoxy.sh */,
+				F82DA2A8246EE3580078921D /* stop-privoxy.sh */,
+			);
+			path = privoxy;
+			sourceTree = "<group>";
+		};
 		F8A294CA24670CA300C905D7 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				F82DA2AF246EE3740078921D /* privoxy */,
 				BD9D96D9246EA07000A1660E /* gfwlist.txt */,
 				BD16C9BC246E48FA00F5523D /* template.js */,
 				F8A294CB24670CB200C905D7 /* go-to-net */,
@@ -374,6 +400,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F82DA2A9246EE3580078921D /* privoxy in Resources */,
+				F82DA2AA246EE3580078921D /* privoxy.template.config in Resources */,
+				F82DA2AC246EE3580078921D /* install-privoxy.sh in Resources */,
+				F82DA2AD246EE3580078921D /* start-privoxy.sh in Resources */,
+				F82DA2AE246EE3580078921D /* stop-privoxy.sh in Resources */,
 				BD9D96E2246EA07000A1660E /* gfwlist.txt in Resources */,
 				BD16C9BD246E48FA00F5523D /* template.js in Resources */,
 				BD651329246CEE7E00CC0354 /* PreferencesWindow.xib in Resources */,
@@ -402,6 +433,7 @@
 				BD16C9F9246E8A7700F5523D /* WebServerUtil.swift in Sources */,
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
 				BD16C9BF246E4B4200F5523D /* CustomPACWindowController.swift in Sources */,
+				F82DA2B1246EE5D10078921D /* PrivoxyConfigUtil.swift in Sources */,
 				F8A294DD2467EE1200C905D7 /* ServerConfigManagerUtil.swift in Sources */,
 				BD16C9C3246E5CC600F5523D /* WindowControllerUtil.swift in Sources */,
 				F87F29C52466EFB30054EF26 /* ProxyConfigUtil.swift in Sources */,

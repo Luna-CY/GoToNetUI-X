@@ -8,13 +8,13 @@
 
 import Foundation
 
-let cliCmdPath = NSHomeDirectory() + SupportDir + "cli-go-to-net"
-
 class ProxyConfigUtil : NSObject {
     
     static let `default` = ProxyConfigUtil()
     
-    private let cli = NSHomeDirectory() + SupportDir + "cli-go-to-net"
+    private let cli = SupportDir + "cli-go-to-net"
+    
+    private let plist = "xin.luna.cli-go-to-net.plist"
     
     private let manager = FileManager.default
     
@@ -47,16 +47,15 @@ class ProxyConfigUtil : NSObject {
      生成plist配置
      */
     private func generate() -> Bool {
-        if !self.manager.fileExists(atPath: cliCmdPath) {
+        if !self.manager.fileExists(atPath: self.cli) {
             return false
         }
         
-        let logFilePath = NSHomeDirectory() + "/Library/Logs/cli-go-to-net.log"
-        let launchAgentDirPath = NSHomeDirectory() + LaunchAgentDir
-        let plistFilepath = launchAgentDirPath + LaunchAgentCliCmdName
+        let logFilePath = NSHomeDirectory() + "/Library/Logs/xin.luna.cli-go-to-net.log"
+        let plistFilepath = LaunchAgentDir + self.plist
         
-        if !self.manager.fileExists(atPath: launchAgentDirPath) {
-            try! self.manager.createDirectory(atPath: launchAgentDirPath, withIntermediateDirectories: true, attributes: nil)
+        if !self.manager.fileExists(atPath: LaunchAgentDir) {
+            try! self.manager.createDirectory(atPath: LaunchAgentDir, withIntermediateDirectories: true, attributes: nil)
         }
         
         let selected = UserDefaults.standard.string(forKey: "selectedServerName")!
@@ -65,14 +64,14 @@ class ProxyConfigUtil : NSObject {
             return false
         }
         
-        let localAddr = UserDefaults.standard.string(forKey: "localAddr")
-        let localPort = UserDefaults.standard.integer(forKey: "localPort")
+        let localAddr = UserDefaults.standard.string(forKey: "socks.listen")
+        let localPort = UserDefaults.standard.integer(forKey: "socks.port")
         
-        let arguments = [cliCmdPath, "-sh", config!.hostname, "-sp", String(config!.serverPort), "-la", localAddr, "-lp", String(localPort), "-u", config!.username, "-p", config!.password]
+        let arguments = [self.cli, "-sh", config!.hostname, "-sp", String(config!.serverPort), "-la", localAddr, "-lp", String(localPort), "-u", config!.username, "-p", config!.password]
         
         let dict: NSMutableDictionary = [
             "Label": "xin.luna.cli-go-to-net",
-            "WorkingDirectory": NSHomeDirectory() + SupportDir,
+            "WorkingDirectory": SupportDir,
             "StandardOutPath": logFilePath,
             "StandardErrorPath": logFilePath,
             "ProgramArguments": arguments,
@@ -89,8 +88,7 @@ class ProxyConfigUtil : NSObject {
     private func start() -> Bool {
         let startShellPath = self.bundle.path(forResource: "start-cli-go-to-net.sh", ofType: nil)
         
-        let launchAgentDirPath = NSHomeDirectory() + LaunchAgentDir
-        let plistFilepath = launchAgentDirPath + LaunchAgentCliCmdName
+        let plistFilepath = LaunchAgentDir + self.plist
         
         let task = Process.launchedProcess(launchPath: startShellPath!, arguments: [plistFilepath])
         task.waitUntilExit()
@@ -108,8 +106,7 @@ class ProxyConfigUtil : NSObject {
     private func stop() -> Bool {
         let stopShellPath = self.bundle.path(forResource: "stop-cli-go-to-net.sh", ofType: nil)
         
-        let launchAgentDirPath = NSHomeDirectory() + LaunchAgentDir
-        let plistFilepath = launchAgentDirPath + LaunchAgentCliCmdName
+        let plistFilepath = LaunchAgentDir + self.plist
         
         let task = Process.launchedProcess(launchPath: stopShellPath!, arguments: [plistFilepath])
         task.waitUntilExit()

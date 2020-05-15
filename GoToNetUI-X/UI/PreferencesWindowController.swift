@@ -27,9 +27,9 @@ class PreferencesWindowController: NSWindowController {
         
         self.startServiceOnProgram.state = UserDefaults.standard.bool(forKey: "startServiceOnProgram") ? .on : .off
         
-        self.localAddr.stringValue = UserDefaults.standard.string(forKey: "localAddr")!
-        self.localPort.stringValue = UserDefaults.standard.string(forKey: "localPort")!
-        self.pacPort.stringValue = UserDefaults.standard.string(forKey: "pacPort")!
+        self.localAddr.stringValue = UserDefaults.standard.string(forKey: "socks.listen")!
+        self.localPort.stringValue = UserDefaults.standard.string(forKey: "socks.port")!
+        self.pacPort.stringValue = UserDefaults.standard.string(forKey: "pac.port")!
         self.gfwList.stringValue = UserDefaults.standard.string(forKey: "gfwList")!
         self.ignore.stringValue = UserDefaults.standard.string(forKey: "ignoreHosts")!
     }
@@ -55,9 +55,9 @@ class PreferencesWindowController: NSWindowController {
             self.localPort.stringValue = "1280"
         }
         
-        UserDefaults.standard.set(self.localAddr.stringValue, forKey: "localAddr")
-        UserDefaults.standard.set(NSNumber(value: Int(self.localPort.intValue)), forKey: "localPort")
-        UserDefaults.standard.set(NSNumber(value: Int(self.pacPort.intValue)), forKey: "pacPort")
+        UserDefaults.standard.set(self.localAddr.stringValue, forKey: "socks.listen")
+        UserDefaults.standard.set(NSNumber(value: Int(self.localPort.intValue)), forKey: "socks.port")
+        UserDefaults.standard.set(NSNumber(value: Int(self.pacPort.intValue)), forKey: "pac.port")
         UserDefaults.standard.set(self.gfwList.stringValue, forKey: "gfwList")
         UserDefaults.standard.set(self.ignore.stringValue, forKey: "ignoreHosts")
         

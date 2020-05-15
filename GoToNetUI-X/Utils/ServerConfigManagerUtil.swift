@@ -38,6 +38,8 @@ class ServerConfigManagerUtil : NSObject {
     
     private let characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     
+    private let configName = "server-config.json"
+    
     private var list : [ServerConfig] = []
     
     override private init() {
@@ -48,7 +50,7 @@ class ServerConfigManagerUtil : NSObject {
             try! manager.createDirectory(atPath: UserConfigDir, withIntermediateDirectories: true, attributes: nil)
         }
         
-        let configFilePath = UserConfigDir + ServerConfigFileName
+        let configFilePath = UserConfigDir + self.configName
         
         if !manager.fileExists(atPath: configFilePath) {
             let data = "[]".data(using: .utf8)
@@ -111,7 +113,7 @@ class ServerConfigManagerUtil : NSObject {
      */
     func flushToFile() -> Bool {
         let manager = FileManager.default
-        let configFilePath = UserConfigDir + ServerConfigFileName
+        let configFilePath = UserConfigDir + self.configName
         
         let data = try! JSONEncoder().encode(self.list)
         try! manager.removeItem(atPath: configFilePath)

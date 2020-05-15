@@ -23,8 +23,8 @@ class CustomPACWindowController: NSWindowController {
             self.rule.string = "! 每行一个规则\n! 以!开始的行为注释将会被忽略"
         }
         
-        if FileManager.default.fileExists(atPath: UserConfigDir + UserRulesFileName) {
-            self.rule.string = try! String(contentsOfFile: UserConfigDir + UserRulesFileName, encoding: .utf8)
+        if FileManager.default.fileExists(atPath: SupportDir + ProxyAutoConfigUtil.default.userRuleFileName) {
+            self.rule.string = try! String(contentsOfFile: SupportDir + ProxyAutoConfigUtil.default.userRuleFileName, encoding: .utf8)
         }
     }
     
@@ -32,7 +32,7 @@ class CustomPACWindowController: NSWindowController {
      保存
      */
     @IBAction func save(_ sender: NSButton) {
-        try! self.rule.string.write(toFile: UserConfigDir + UserRulesFileName, atomically: true, encoding: .utf8)
+        try! self.rule.string.write(toFile: SupportDir + ProxyAutoConfigUtil.default.userRuleFileName, atomically: true, encoding: .utf8)
         
         NotificationCenter.default.post(name: NotifyPACRuleChange, object: nil)
     }
