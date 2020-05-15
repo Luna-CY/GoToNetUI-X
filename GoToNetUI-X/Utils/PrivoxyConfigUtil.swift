@@ -77,7 +77,7 @@ class PrivoxyConfigUtil : NSObject {
         // Read template file
         var template = try! String(contentsOfFile: templatePath!, encoding: .utf8)
         
-        template = template.replacingOccurrences(of: "{http}", with: self.defaults.string(forKey: "privoxy.address")! + ":" + String(defaults.integer(forKey: "privoxy.port")))
+        template = template.replacingOccurrences(of: "{http}", with: self.defaults.string(forKey: "privoxy.listen")! + ":" + String(self.defaults.integer(forKey: "privoxy.port")))
         template = template.replacingOccurrences(of: "{socks5}", with: defaults.string(forKey: "socks.listen")! + ":" + String(defaults.integer(forKey: "socks.port")))
         
         // Write to file
