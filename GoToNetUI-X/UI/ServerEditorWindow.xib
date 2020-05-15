@@ -16,6 +16,7 @@
                 <outlet property="port" destination="ukS-rj-ekI" id="rxY-jX-0Ga"/>
                 <outlet property="saveButton" destination="4eX-Ve-Fy7" id="FVG-sh-d45"/>
                 <outlet property="username" destination="iGz-CE-kuD" id="Mo9-Bd-Xes"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="G6T-KN-9kK"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -206,6 +207,9 @@
                     </box>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="9M4-5y-lTD"/>
+            </connections>
             <point key="canvasLocation" x="269" y="216"/>
         </window>
     </objects>

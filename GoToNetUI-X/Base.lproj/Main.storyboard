@@ -684,6 +684,7 @@
                         <outlet property="serverConfigListEnd" destination="Qwn-Xo-Tk2" id="qZb-WX-NCS"/>
                         <outlet property="serverConfigListItem" destination="Fbx-Bp-pKe" id="hEx-rs-7ke"/>
                         <outlet property="startServiceItem" destination="aZA-Dd-FLc" id="dzs-HI-C6I"/>
+                        <outlet property="updatePACMenuItem" destination="FCa-RH-bwd" id="yp2-vt-fIY"/>
                     </connections>
                 </customObject>
                 <menu id="mtd-gT-MVg">
@@ -746,6 +747,12 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="updatePAC:" target="Voe-Tx-rLC" id="J84-fK-5tQ"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="自定义PAC规则" id="quD-Zi-qbj">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="customPAC:" target="Voe-Tx-rLC" id="9qM-39-Gve"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="cSs-AU-emR"/>

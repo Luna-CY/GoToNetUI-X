@@ -41,13 +41,13 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
     }
     
     @IBAction func add(_ sender: Any) {
-        let count = ServerConfigManager.default.getServerConfigList().count
-        let id = ServerConfigManager.default.generateId()
+        let count = ServerConfigManagerUtil.default.getServerConfigList().count
+        let id = ServerConfigManagerUtil.default.generateId()
         let name = "未命名配置"
         
         let config = ServerConfig(id: id, name: name, hostname: "", serverPort: 443, username: "", password: "")
         
-        if !ServerConfigManager.default.addServerConfig(config) {
+        if !ServerConfigManagerUtil.default.addServerConfig(config) {
             return
         }
         
@@ -64,9 +64,9 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
         if self.listTableView.selectedRow >= 0 {
             self.saveButton.isEnabled = false
             
-            var config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
+            var config = ServerConfigManagerUtil.default.getServerConfigList()[self.listTableView.selectedRow]
             
-            if !ServerConfigManager.default.delServerConfig(config.id) {
+            if !ServerConfigManagerUtil.default.delServerConfig(config.id) {
                 return
             }
             
@@ -76,7 +76,7 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
             config.username = self.username.stringValue
             config.password = self.password.stringValue
             
-            if !ServerConfigManager.default.addServerConfig(config) {
+            if !ServerConfigManagerUtil.default.addServerConfig(config) {
                 return
             }
             
@@ -92,11 +92,11 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
             self.delButton.isEnabled = false
             
             let selectedRow = self.listTableView.selectedRow
-            let config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
+            let config = ServerConfigManagerUtil.default.getServerConfigList()[self.listTableView.selectedRow]
             
             self.listTableView.beginUpdates()
             
-            _ = ServerConfigManager.default.delServerConfig(config.id)
+            _ = ServerConfigManagerUtil.default.delServerConfig(config.id)
             
             self.listTableView.removeRows(at: IndexSet(integer: selectedRow), withAnimation: .effectFade)
             self.listTableView.endUpdates()
@@ -111,7 +111,7 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
      返回表格总行数
      */
     func numberOfRows(in listTableView: NSTableView) -> Int {
-        return ServerConfigManager.default.getServerConfigList().count
+        return ServerConfigManagerUtil.default.getServerConfigList().count
     }
     
     /**
@@ -125,7 +125,7 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
      显示单元格
      */
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let list = ServerConfigManager.default.getServerConfigList()
+        let list = ServerConfigManagerUtil.default.getServerConfigList()
         
         if list.count > row {
             let config = list[row]
@@ -151,7 +151,7 @@ class ServerEditorWindowController: NSWindowController, NSTableViewDataSource, N
      */
     func tableViewSelectionDidChange(_ notification: Notification) {
         if self.listTableView.selectedRow >= 0 {
-            let config = ServerConfigManager.default.getServerConfigList()[self.listTableView.selectedRow]
+            let config = ServerConfigManagerUtil.default.getServerConfigList()[self.listTableView.selectedRow]
             
             self.configName.isEnabled = true
             self.host.isEnabled = true

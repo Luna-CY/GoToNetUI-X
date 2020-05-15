@@ -16,6 +16,8 @@ class PreferencesWindowController: NSWindowController {
     
     @IBOutlet weak var localPort: NSTextField!
     
+    @IBOutlet weak var pacPort: NSTextField!
+    
     @IBOutlet weak var gfwList: NSTextField!
     
     @IBOutlet weak var ignore: NSTextField!
@@ -27,7 +29,9 @@ class PreferencesWindowController: NSWindowController {
         
         self.localAddr.stringValue = UserDefaults.standard.string(forKey: "localAddr")!
         self.localPort.stringValue = UserDefaults.standard.string(forKey: "localPort")!
+        self.pacPort.stringValue = UserDefaults.standard.string(forKey: "pacPort")!
         self.gfwList.stringValue = UserDefaults.standard.string(forKey: "gfwList")!
+        self.ignore.stringValue = UserDefaults.standard.string(forKey: "ignoreHosts")!
     }
     
     /*
@@ -47,15 +51,16 @@ class PreferencesWindowController: NSWindowController {
      保存代理设置
      */
     @IBAction func save(_ sender: Any) {
-        UserDefaults.standard.set(self.localAddr.stringValue, forKey: "localAddr")
-        
         if 0 == self.localPort.intValue || self.localPort.intValue > 65535 {
             self.localPort.stringValue = "1280"
         }
         
+        UserDefaults.standard.set(self.localAddr.stringValue, forKey: "localAddr")
         UserDefaults.standard.set(NSNumber(value: Int(self.localPort.intValue)), forKey: "localPort")
-        
+        UserDefaults.standard.set(NSNumber(value: Int(self.pacPort.intValue)), forKey: "pacPort")
         UserDefaults.standard.set(self.gfwList.stringValue, forKey: "gfwList")
         UserDefaults.standard.set(self.ignore.stringValue, forKey: "ignoreHosts")
+        
+        NotificationCenter.default.post(name: NotifyPreferencesChange, object: nil)
     }
 }

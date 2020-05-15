@@ -11,7 +11,7 @@ import Cocoa
 import SwiftUI
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
     var statusBarItem: NSStatusItem!
     
@@ -21,6 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      Main Func
      */
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NSUserNotificationCenter.default.delegate = self
+        
         if !ProxyConfigUtil.default.install() {
             NSLog("安装cli-go-to-net命令失败")
             self.startServiceItem.isEnabled = false
@@ -52,9 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.setStartState()
         }
         
-        NotificationCenter.default.addObserver(forName: NotifyServerConfigListChange, object: nil, queue: nil, using: { note in
-            self.flushServerConfigList()
-        })
+        self.registerObserver()
     }
     
     /**
@@ -65,6 +65,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if ProxyConfigUtil.default.sync(action: "stop") {
                 UserDefaults.standard.set(false, forKey: "isStarted")
             }
+            
+            WebServerUtil.default.stop()
         }
         
         NSApplication.shared.terminate(self)
@@ -90,6 +92,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         self.setStartState()
+        
+        WebServerUtil.default.sync()
     }
     
     /**
@@ -112,6 +116,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         self.setStopState()
+        
+        WebServerUtil.default.sync()
     }
     
     /**
@@ -124,11 +130,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      */
     @IBAction func pacModeAction(_ sender: Any) {
         if UserDefaults.standard.bool(forKey: "isStarted") {
-            if !NetworkConfigUtil.default.setAuto(true) {
+            if !NetworkConfigUtil.default.set("auto") {
                 return
             }
             
             UserDefaults.standard.set("auto", forKey: "runningMode")
+            WebServerUtil.default.sync()
             
             self.globalModeItem.state = .off
             self.manualModeItem.state = .off
@@ -154,11 +161,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      */
     @IBAction func globalModeAction(_ sender: Any) {
         if UserDefaults.standard.bool(forKey: "isStarted") {
-            if !NetworkConfigUtil.default.setGlobal(true) {
+            if !NetworkConfigUtil.default.set("global") {
+                NSLog("切换全局代理模式失败")
+                
                 return
             }
             
             UserDefaults.standard.set("global", forKey: "runningMode")
+            WebServerUtil.default.sync()
             
             self.pacModeItem.state = .off
             self.manualModeItem.state = .off
@@ -184,11 +194,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
      */
     @IBAction func manualModeAction(_ sender: Any) {
         if UserDefaults.standard.bool(forKey: "isStarted") {
-            if !NetworkConfigUtil.default.setManual() {
+            if !NetworkConfigUtil.default.set("manual") {
                 return
             }
             
             UserDefaults.standard.set("manual", forKey: "runningMode")
+            WebServerUtil.default.sync()
             
             self.pacModeItem.state = .off
             self.globalModeItem.state = .off
@@ -211,46 +222,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var serverConfigListBegin: NSMenuItem!
     @IBOutlet weak var serverConfigListEnd: NSMenuItem!
     
-    private var serverEditorWindowController : ServerEditorWindowController!
-    
     /**
      打开服务器配置编辑窗口
      */
     @IBAction func openServerEditor(_ sender: NSMenuItem) {
-        if nil != self.serverEditorWindowController {
-            self.serverEditorWindowController.close()
-        }
-        
-        self.serverEditorWindowController = ServerEditorWindowController(windowNibName: NSNib.Name("ServerEditorWindow"))
-        self.serverEditorWindowController.showWindow(self)
-        
-        NSApp.activate(ignoringOtherApps: true)
+        WindowControllerUtil.default.openServerEditorWindow(self)
     }
-    
-    private var preferencesWindowController : PreferencesWindowController!
     
     /**
      打开偏好设置面板
      */
     @IBAction func openPreferences(_ sender: NSMenuItem) {
-        if nil != self.preferencesWindowController {
-            self.preferencesWindowController.close()
-        }
-        
-        self.preferencesWindowController = PreferencesWindowController(windowNibName: NSNib.Name("PreferencesWindow"))
-        self.preferencesWindowController.showWindow(self)
-        
-        NSApp.activate(ignoringOtherApps: true)
+        WindowControllerUtil.default.openPreferencesWindow(self)
     }
     
+    @IBOutlet weak var updatePACMenuItem: NSMenuItem!
+    
+    /**
+     触发PAC规则更新
+     */
     @IBAction func updatePAC(_ sender: NSMenuItem) {
-        sender.isEnabled = false
-        
-        let title = sender.title
+        sender.action = nil
         sender.title = "更新PAC规则列表中..."
         
-        sender.title = title
-        sender.isEnabled = true
+        ProxyAutoConfigUtil.default.sync(true)
+    }
+    
+    /**
+     异步同步pac更新状态
+     */
+    private func updatePACStatus() {
+        self.updatePACMenuItem.title = "更新PAC规则"
+        self.updatePACMenuItem.action = #selector(AppDelegate.updatePAC)
+    }
+    
+    var customPACWindowController : CustomPACWindowController!
+    
+    /**
+     自定义pac规则
+     */
+    @IBAction func customPAC(_ sender: NSMenuItem) {
+        WindowControllerUtil.default.openCustomPACWindow(self)
     }
     
     /**
@@ -277,6 +289,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "selectedServerName": "",
             "localAddr": "127.0.0.1",
             "localPort": NSNumber(value: 1280),
+            "pacPort": NSNumber(value: 1281),
             "gfwList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
             "ignoreHosts": "",
         ])
@@ -299,7 +312,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var isFound = false
         var hasValidConfig = false
         
-        let serverConfigList = ServerConfigManager.default.getServerConfigList()
+        let serverConfigList = ServerConfigManagerUtil.default.getServerConfigList()
         for (_, serverConfig) in serverConfigList.enumerated() {
             let item = NSMenuItem()
             item.identifier = NSUserInterfaceItemIdentifier(serverConfig.id)
@@ -353,10 +366,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setStartState() {
         UserDefaults.standard.set(true, forKey: "isStarted")
         
-        self.startServiceItem.isEnabled = false
         self.startServiceItem.isHidden = true
-        
-        self.closeServiceItem.isEnabled = true
         self.closeServiceItem.isHidden = false
         
         if let button = self.statusBarItem.button {
@@ -370,15 +380,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setStopState() {
         UserDefaults.standard.set(false, forKey: "isStarted")
         
-        self.closeServiceItem.isEnabled = false
         self.closeServiceItem.isHidden = true
-        
-        self.startServiceItem.isEnabled = true
         self.startServiceItem.isHidden = false
         
         if let button = self.statusBarItem.button {
             button.image = NSImage(named: "IconOff")
         }
+    }
+    
+    /**
+     始终显示通知
+     */
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
+    
+    /**
+     注册观察者
+     */
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(forName: NotifyServerConfigListChange, object: nil, queue: nil, using: { note in
+            self.flushServerConfigList()
+        })
+        
+        NotificationCenter.default.addObserver(forName: NotifyPACUpdate, object: nil, queue: nil, using: { note in
+            self.updatePACStatus()
+        })
+        
+        NotificationCenter.default.addObserver(forName: NotifyPreferencesChange, object: nil, queue: nil, using: { note in
+            NetworkConfigUtil.default.sync()
+            ProxyAutoConfigUtil.default.sync(false)
+            WebServerUtil.default.sync()
+        })
+        
+        NotificationCenter.default.addObserver(forName: NotifyPACRuleChange, object: nil, queue: nil, using: { note in
+            ProxyAutoConfigUtil.default.sync(false)
+            WebServerUtil.default.sync()
+        })
     }
 }
 
