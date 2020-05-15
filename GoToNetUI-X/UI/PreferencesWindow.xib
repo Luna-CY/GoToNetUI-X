@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController" customModule="GoToNetUI_X" customModuleProvider="target">
             <connections>
+                <outlet property="enableHttp" destination="nrS-5G-8WI" id="FKE-Eq-IOe"/>
                 <outlet property="gfwList" destination="KVb-dQ-ZNM" id="ekX-fI-dSj"/>
                 <outlet property="httpAddr" destination="czL-Ba-tCl" id="uOE-V8-kO3"/>
                 <outlet property="httpPort" destination="ood-eH-oms" id="ePT-ec-UKH"/>
@@ -67,16 +68,16 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dvF-da-XBY">
-                        <rect key="frame" x="18" y="223" width="84" height="16"/>
+                        <rect key="frame" x="18" y="223" width="131" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="本地监听地址" id="agd-kh-gGs">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="本地SOCKS监听地址" id="agd-kh-gGs">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Lu-B5-Z6H">
-                        <rect key="frame" x="143" y="220" width="139" height="21"/>
+                        <rect key="frame" x="155" y="220" width="139" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="127.0.0.1" placeholderString="IP地址" drawsBackground="YES" id="4aY-h6-CYG">
                             <font key="font" metaFont="system"/>
@@ -85,7 +86,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yln-0m-G5H">
-                        <rect key="frame" x="290" y="220" width="50" height="21"/>
+                        <rect key="frame" x="302" y="220" width="50" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1280" placeholderString="端口" drawsBackground="YES" id="cxY-eb-vd8">
                             <font key="font" metaFont="system"/>
@@ -149,7 +150,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="svn-f9-LVA">
-                        <rect key="frame" x="348" y="222" width="84" height="16"/>
+                        <rect key="frame" x="360" y="222" width="84" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="PAC服务端口" id="JGU-LQ-yzy">
                             <font key="font" metaFont="system"/>
@@ -158,7 +159,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJI-nV-dk7">
-                        <rect key="frame" x="438" y="220" width="50" height="21"/>
+                        <rect key="frame" x="450" y="220" width="50" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1281" placeholderString="端口" drawsBackground="YES" id="K9u-hS-gg7">
                             <font key="font" metaFont="system"/>
@@ -167,7 +168,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaX-AU-T47">
-                        <rect key="frame" x="20" y="158" width="160" height="16"/>
+                        <rect key="frame" x="191" y="158" width="160" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="HTTP代理服务器监听地址" id="k2v-Tc-rgI">
                             <font key="font" metaFont="system"/>
@@ -176,7 +177,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="czL-Ba-tCl">
-                        <rect key="frame" x="186" y="156" width="244" height="21"/>
+                        <rect key="frame" x="357" y="156" width="244" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="127.0.0.1" placeholderString="IP地址" drawsBackground="YES" id="UTV-DI-nH6">
                             <font key="font" metaFont="system"/>
@@ -185,7 +186,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ood-eH-oms">
-                        <rect key="frame" x="438" y="156" width="50" height="21"/>
+                        <rect key="frame" x="609" y="156" width="50" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1282" placeholderString="端口" drawsBackground="YES" id="Ohz-7w-qyV">
                             <font key="font" metaFont="system"/>
@@ -193,6 +194,14 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nrS-5G-8WI">
+                        <rect key="frame" x="20" y="157" width="153" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="启用HTTP代理服务器" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="V7m-I5-m6d">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
             <connections>

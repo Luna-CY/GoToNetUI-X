@@ -102,9 +102,24 @@ class NetworkConfigUtil : NSObject {
         proxies.setObject(NSNumber(value: 0), forKey: SystemConfiguration.kSCPropNetProxiesHTTPEnable as NSString)
         proxies.setObject(NSNumber(value: 0), forKey: SystemConfiguration.kSCPropNetProxiesHTTPSEnable as NSString)
         
+        // 设置SOCKS
         proxies.setObject(NSNumber(value: 1), forKey: SystemConfiguration.kSCPropNetProxiesSOCKSEnable as NSString)
         proxies.setObject(UserDefaults.standard.string(forKey: "socks.listen")!, forKey: SystemConfiguration.kSCPropNetProxiesSOCKSProxy as NSString)
         proxies.setObject(NSNumber(value: UserDefaults.standard.integer(forKey: "socks.port")), forKey: SystemConfiguration.kSCPropNetProxiesSOCKSPort as NSString)
+        
+        // 如果启用HTTP代理服务器
+        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+            // 设置HTTP
+            proxies.setObject(NSNumber(value: 1), forKey: SystemConfiguration.kSCPropNetProxiesHTTPEnable as NSString)
+            proxies.setObject(UserDefaults.standard.string(forKey: "privoxy.listen")!, forKey: SystemConfiguration.kSCPropNetProxiesHTTPProxy as NSString)
+            proxies.setObject(NSNumber(value: UserDefaults.standard.integer(forKey: "privoxy.port")), forKey: SystemConfiguration.kSCPropNetProxiesHTTPPort as NSString)
+            
+            // 设置HTTPS
+            proxies.setObject(NSNumber(value: 1), forKey: SystemConfiguration.kSCPropNetProxiesHTTPSEnable as NSString)
+            proxies.setObject(UserDefaults.standard.string(forKey: "privoxy.listen")!, forKey: SystemConfiguration.kSCPropNetProxiesHTTPSProxy as NSString)
+            proxies.setObject(NSNumber(value: UserDefaults.standard.integer(forKey: "privoxy.port")), forKey: SystemConfiguration.kSCPropNetProxiesHTTPSPort as NSString)
+        }
+        
         proxies.setObject(self.getIgnoreHosts().allObjects, forKey: SystemConfiguration.kSCPropNetProxiesExceptionsList as NSString)
         
         self.setProxy(proxies: proxies)

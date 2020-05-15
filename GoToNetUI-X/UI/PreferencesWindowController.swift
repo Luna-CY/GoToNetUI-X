@@ -18,6 +18,8 @@ class PreferencesWindowController: NSWindowController {
     
     @IBOutlet weak var pacPort: NSTextField!
     
+    @IBOutlet weak var enableHttp: NSButton!
+    
     @IBOutlet weak var httpAddr: NSTextField!
     
     @IBOutlet weak var httpPort: NSTextField!
@@ -33,9 +35,13 @@ class PreferencesWindowController: NSWindowController {
         
         self.localAddr.stringValue = UserDefaults.standard.string(forKey: "socks.listen")!
         self.localPort.stringValue = UserDefaults.standard.string(forKey: "socks.port")!
+        
         self.pacPort.stringValue = UserDefaults.standard.string(forKey: "pac.port")!
+        
+        self.enableHttp.state = UserDefaults.standard.bool(forKey: "privoxy.enable") ? .on : .off
         self.httpAddr.stringValue = UserDefaults.standard.string(forKey: "privoxy.listen")!
         self.httpPort.stringValue = UserDefaults.standard.string(forKey: "privoxy.port")!
+        
         self.gfwList.stringValue = UserDefaults.standard.string(forKey: "gfwList")!
         self.ignore.stringValue = UserDefaults.standard.string(forKey: "ignoreHosts")!
     }
@@ -63,9 +69,13 @@ class PreferencesWindowController: NSWindowController {
         
         UserDefaults.standard.set(self.localAddr.stringValue, forKey: "socks.listen")
         UserDefaults.standard.set(NSNumber(value: Int(self.localPort.intValue)), forKey: "socks.port")
+        
         UserDefaults.standard.set(NSNumber(value: Int(self.pacPort.intValue)), forKey: "pac.port")
+        
+        UserDefaults.standard.set(.on == self.enableHttp.state, forKey: "privoxy.enable")
         UserDefaults.standard.set(self.httpAddr.stringValue, forKey: "privoxy.listen")
         UserDefaults.standard.set(NSNumber(value: Int(self.httpPort.intValue)), forKey: "privoxy.port")
+        
         UserDefaults.standard.set(self.gfwList.stringValue, forKey: "gfwList")
         UserDefaults.standard.set(self.ignore.stringValue, forKey: "ignoreHosts")
         

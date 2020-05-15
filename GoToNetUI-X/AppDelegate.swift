@@ -79,7 +79,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 UserDefaults.standard.set(false, forKey: "isStarted")
             }
             
-            _ = PrivoxyConfigUtil.default.sync(action: "stop")
+            if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+                _ = PrivoxyConfigUtil.default.sync(action: "stop")
+            }
+            
             WebServerUtil.default.sync()
         }
         
@@ -103,7 +106,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         self.setStartState()
         
-        _ = PrivoxyConfigUtil.default.sync(action: "start")
+        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+            _ = PrivoxyConfigUtil.default.sync(action: "start")
+        }
+        
         WebServerUtil.default.sync()
     }
     
@@ -124,7 +130,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         self.setStopState()
         
-        _ = PrivoxyConfigUtil.default.sync(action: "stop")
+        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+            _ = PrivoxyConfigUtil.default.sync(action: "stop")
+        }
+        
         WebServerUtil.default.sync()
     }
     
@@ -298,6 +307,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "socks.listen": "127.0.0.1",
             "socks.port": NSNumber(value: 1280),
             "pac.port": NSNumber(value: 1281),
+            "privoxy.enable": true,
             "privoxy.listen": "127.0.0.1",
             "privoxy.port": NSNumber(value: 1282),
             "gfwList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
