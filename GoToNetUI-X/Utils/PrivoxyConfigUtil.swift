@@ -22,6 +22,8 @@ class PrivoxyConfigUtil : NSObject {
     
     private let plist = "xin.luna.privoxy.plist"
     
+    private var isStarted = false
+    
     private override init() {
         super.init()
     }
@@ -92,78 +94,56 @@ class PrivoxyConfigUtil : NSObject {
     /**
      启动服务
      */
-    private func start() -> Bool {
+    private func start() {
+        if !self.generate() {
+            NSLog("生成privoxy配置失败")
+            
+            return
+        }
+        
         let startShellPath = self.bundle.path(forResource: "start-privoxy.sh", ofType: nil)
         
         let task = Process.launchedProcess(launchPath: startShellPath!, arguments: [LaunchAgentDir + self.plist])
         task.waitUntilExit()
         if task.terminationStatus == 0 {
+            self.isStarted = true
             NSLog("启动privoxy服务成功")
-            
-            return true
         } else {
             NSLog("启动privoxy服务失败")
-            
-            return false
         }
     }
     
     /**
      关闭服务
      */
-    private func stop() -> Bool {
+    private func stop() {
         let stopShellPath = self.bundle.path(forResource: "stop-privoxy.sh", ofType: nil)
         
         let task = Process.launchedProcess(launchPath: stopShellPath!, arguments: [LaunchAgentDir + self.plist])
         task.waitUntilExit()
         if task.terminationStatus == 0 {
+            self.isStarted = false
             NSLog("关闭privoxy服务成功")
-            
-            return true
         } else {
             NSLog("关闭privoxy服务失败")
-            
-            return false
         }
     }
     
     /**
      同步服务状态
      */
-    public func sync(action: String) -> Bool {
-        switch action {
-        case "stop":
-            if !self.stop() {
-                return false
-            }
-            
-            break
-        case "start":
-            if !self.generate() {
-                NSLog("生成服务配置失败")
-                
-                return false
-            }
-            
-            if !self.start() {
-                return false
-            }
-            
-            break
-        case "restart":
-            if !self.stop() {
-                return false
-            }
-            
-            if !self.start() {
-                return false
-            }
-            
-            break
-        default:
-            return false
+    public func sync() {
+        if !UserDefaults.standard.bool(forKey: "isStarted") && self.isStarted {
+            self.stop()
         }
         
-        return true
+        if UserDefaults.standard.bool(forKey: "isStarted") && !self.isStarted {
+            self.start()
+        }
+        
+        if UserDefaults.standard.bool(forKey: "isStarted") && self.isStarted {
+            self.stop()
+            self.start()
+        }
     }
 }

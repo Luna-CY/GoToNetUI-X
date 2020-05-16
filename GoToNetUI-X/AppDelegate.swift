@@ -55,7 +55,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         self.flushServerConfigList()
         
-        if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
+        if 0 == ServerConfigManagerUtil.default.getServerConfigList().count {
+            self.startServiceItem.action = nil
+            UserDefaults.standard.set("", forKey: "selectedServerName")
+        } else if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
             self.startServiceItem.action = nil
         } else if UserDefaults.standard.bool(forKey: "startServiceOnProgram") {
             if !ProxyConfigUtil.default.sync(action: "start") {
@@ -64,11 +67,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 return
             }
             
-            if UserDefaults.standard.bool(forKey: "privoxy.enable") {
-                _ = PrivoxyConfigUtil.default.sync(action: "start")
-            }
-            
             self.setStartState()
+            
+            WebServerUtil.default.sync()
+            if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+                PrivoxyConfigUtil.default.sync()
+            }
         }
         
         self.registerObserver()
@@ -83,11 +87,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 UserDefaults.standard.set(false, forKey: "isStarted")
             }
             
-            if UserDefaults.standard.bool(forKey: "privoxy.enable") {
-                _ = PrivoxyConfigUtil.default.sync(action: "stop")
-            }
-            
             WebServerUtil.default.sync()
+            if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+                PrivoxyConfigUtil.default.sync()
+            }
         }
         
         NSApplication.shared.terminate(self)
@@ -110,11 +113,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         self.setStartState()
         
-        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
-            _ = PrivoxyConfigUtil.default.sync(action: "start")
-        }
-        
         WebServerUtil.default.sync()
+        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+            PrivoxyConfigUtil.default.sync()
+        }
     }
     
     /**
@@ -134,11 +136,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         self.setStopState()
         
-        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
-            _ = PrivoxyConfigUtil.default.sync(action: "stop")
-        }
-        
         WebServerUtil.default.sync()
+        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+            PrivoxyConfigUtil.default.sync()
+        }
     }
     
     /**
@@ -378,10 +379,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             self.setStopState()
             
             return
-        } else {
-            UserDefaults.standard.set(true, forKey: "isStarted")
-            
-            self.setStartState()
+        }
+        
+        UserDefaults.standard.set(true, forKey: "isStarted")
+        self.setStartState()
+        
+        WebServerUtil.default.sync()
+        if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+            PrivoxyConfigUtil.default.sync()
         }
         
         self.flushServerConfigList()
@@ -432,9 +437,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         })
         
         NotificationCenter.default.addObserver(forName: NotifyPreferencesChange, object: nil, queue: nil, using: { note in
-            NetworkConfigUtil.default.sync()
-            ProxyAutoConfigUtil.default.sync(false)
-            WebServerUtil.default.sync()
+            if UserDefaults.standard.bool(forKey: "isStarted") {
+                NetworkConfigUtil.default.sync()
+                ProxyAutoConfigUtil.default.sync(false)
+                WebServerUtil.default.sync()
+                if UserDefaults.standard.bool(forKey: "privoxy.enable") {
+                    PrivoxyConfigUtil.default.sync()
+                }
+            }
         })
         
         NotificationCenter.default.addObserver(forName: NotifyPACRuleChange, object: nil, queue: nil, using: { note in

@@ -89,7 +89,7 @@ class ProxyAutoConfigUtil : NSObject {
                 , with: rulesJsonStr!)
             
             // Replace __SOCKS5PORT__ palcholder in pac js
-            let socks5Port = UserDefaults.standard.integer(forKey: "localPort")
+            let socks5Port = UserDefaults.standard.integer(forKey: "socks.port")
             jsStr = jsStr!.replacingOccurrences(of: "__SOCKS5PORT__"
                 , with: "\(socks5Port)")
             

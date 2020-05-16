@@ -47,7 +47,7 @@ class WebServerUtil : NSObject {
     /**
      启动服务器
      */
-    func start() {
+    private func start() {
         if !FileManager.default.fileExists(atPath: SupportDir + ProxyAutoConfigUtil.default.pacFileName) {
             ProxyAutoConfigUtil.default.sync(false)
         }
@@ -68,7 +68,7 @@ class WebServerUtil : NSObject {
     /**
      停止服务器
      */
-    func stop() {
+    private func stop() {
         self.server.stop()
         
         self.isStarted = false
@@ -77,7 +77,7 @@ class WebServerUtil : NSObject {
     /**
      重启服务器
      */
-    func restart() {
+    private func restart() {
         self.stop()
         self.start()
     }
