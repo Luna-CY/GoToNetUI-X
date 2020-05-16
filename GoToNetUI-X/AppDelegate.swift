@@ -23,24 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         NSUserNotificationCenter.default.delegate = self
         
-        if !ProxyConfigUtil.default.install() {
-            let message = NSUserNotification()
-            message.title = "异常错误"
-            message.subtitle = "安装代理客户端失败"
-            NSUserNotificationCenter.default.deliver(message)
-            
-            self.startServiceItem.isEnabled = false
-        }
-        
-        if !PrivoxyConfigUtil.default.install() {
-            let message = NSUserNotification()
-            message.title = "异常错误"
-            message.subtitle = "安装HTTP服务器失败"
-            NSUserNotificationCenter.default.deliver(message)
-            
-            self.startServiceItem.isEnabled = false
-        }
         self.registerGlobalConfig()
+        self.installTools()
         
         self.statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         self.statusBarItem.menu = mainMenu
@@ -318,6 +302,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "gfwList": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
             "ignoreHosts": "127.0.0.1, localhost, 192.168.0.0/16, 10.0.0.0/8, FE80::/64, ::1, FD00::/8",
         ])
+    }
+    
+    private func installTools() {
+        if !ProxyConfigUtil.default.install() {
+            let message = NSUserNotification()
+            message.title = "异常错误"
+            message.subtitle = "安装代理客户端失败"
+            NSUserNotificationCenter.default.deliver(message)
+            
+            self.startServiceItem.isEnabled = false
+        }
+        
+        if !PrivoxyConfigUtil.default.install() {
+            let message = NSUserNotification()
+            message.title = "异常错误"
+            message.subtitle = "安装HTTP服务器失败"
+            NSUserNotificationCenter.default.deliver(message)
+            
+            self.startServiceItem.isEnabled = false
+        }
+        
+        if !NetworkConfigUtil.default.install() {
+            let message = NSUserNotification()
+            message.title = "异常错误"
+            message.subtitle = "安装网络配置工具失败"
+            NSUserNotificationCenter.default.deliver(message)
+            
+            self.startServiceItem.isEnabled = false
+        }
     }
     
     /**

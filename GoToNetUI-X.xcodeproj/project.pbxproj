@@ -32,6 +32,8 @@
 		F82DA2AD246EE3580078921D /* start-privoxy.sh in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A7246EE3580078921D /* start-privoxy.sh */; };
 		F82DA2AE246EE3580078921D /* stop-privoxy.sh in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A8246EE3580078921D /* stop-privoxy.sh */; };
 		F82DA2B1246EE5D10078921D /* PrivoxyConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */; };
+		F858B29A24704E5B00BA4133 /* network-helper in Resources */ = {isa = PBXBuildFile; fileRef = F858B29924704E5B00BA4133 /* network-helper */; };
+		F858B29C24704EAD00BA4133 /* install-network-helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = F858B29B24704EAD00BA4133 /* install-network-helper.sh */; };
 		F8772ADD246D896B00F0E7BB /* ProxyAutoConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8772ADC246D896B00F0E7BB /* ProxyAutoConfigUtil.swift */; };
 		F87F29C52466EFB30054EF26 /* ProxyConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F29C42466EFB30054EF26 /* ProxyConfigUtil.swift */; };
 		F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */; };
@@ -136,6 +138,8 @@
 		F82DA2A7246EE3580078921D /* start-privoxy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-privoxy.sh"; sourceTree = "<group>"; };
 		F82DA2A8246EE3580078921D /* stop-privoxy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "stop-privoxy.sh"; sourceTree = "<group>"; };
 		F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivoxyConfigUtil.swift; sourceTree = "<group>"; };
+		F858B29924704E5B00BA4133 /* network-helper */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "network-helper"; sourceTree = "<group>"; };
+		F858B29B24704EAD00BA4133 /* install-network-helper.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-network-helper.sh"; sourceTree = "<group>"; };
 		F8772ADC246D896B00F0E7BB /* ProxyAutoConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyAutoConfigUtil.swift; sourceTree = "<group>"; };
 		F87F29C42466EFB30054EF26 /* ProxyConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyConfigUtil.swift; sourceTree = "<group>"; };
 		F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-cli-go-to-net.sh"; sourceTree = "<group>"; };
@@ -248,9 +252,19 @@
 			path = privoxy;
 			sourceTree = "<group>";
 		};
+		F858B29024704E0200BA4133 /* network-helper */ = {
+			isa = PBXGroup;
+			children = (
+				F858B29B24704EAD00BA4133 /* install-network-helper.sh */,
+				F858B29924704E5B00BA4133 /* network-helper */,
+			);
+			path = "network-helper";
+			sourceTree = "<group>";
+		};
 		F8A294CA24670CA300C905D7 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				F858B29024704E0200BA4133 /* network-helper */,
 				F82DA2AF246EE3740078921D /* privoxy */,
 				BD9D96D9246EA07000A1660E /* gfwlist.txt */,
 				BD16C9BC246E48FA00F5523D /* template.js */,
@@ -400,6 +414,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F858B29C24704EAD00BA4133 /* install-network-helper.sh in Resources */,
+				F858B29A24704E5B00BA4133 /* network-helper in Resources */,
 				F82DA2A9246EE3580078921D /* privoxy in Resources */,
 				F82DA2AA246EE3580078921D /* privoxy.template.config in Resources */,
 				F82DA2AC246EE3580078921D /* install-privoxy.sh in Resources */,
