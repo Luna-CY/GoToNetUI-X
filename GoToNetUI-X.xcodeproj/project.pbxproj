@@ -34,6 +34,7 @@
 		F82DA2B1246EE5D10078921D /* PrivoxyConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */; };
 		F858B29A24704E5B00BA4133 /* network-helper in Resources */ = {isa = PBXBuildFile; fileRef = F858B29924704E5B00BA4133 /* network-helper */; };
 		F858B29C24704EAD00BA4133 /* install-network-helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = F858B29B24704EAD00BA4133 /* install-network-helper.sh */; };
+		F858B29F2470F33700BA4133 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858B29E2470F33700BA4133 /* CommonUtil.swift */; };
 		F8772ADD246D896B00F0E7BB /* ProxyAutoConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8772ADC246D896B00F0E7BB /* ProxyAutoConfigUtil.swift */; };
 		F87F29C52466EFB30054EF26 /* ProxyConfigUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F29C42466EFB30054EF26 /* ProxyConfigUtil.swift */; };
 		F8A294CE2467B90D00C905D7 /* start-cli-go-to-net.sh in Resources */ = {isa = PBXBuildFile; fileRef = F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */; };
@@ -140,6 +141,7 @@
 		F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivoxyConfigUtil.swift; sourceTree = "<group>"; };
 		F858B29924704E5B00BA4133 /* network-helper */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "network-helper"; sourceTree = "<group>"; };
 		F858B29B24704EAD00BA4133 /* install-network-helper.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-network-helper.sh"; sourceTree = "<group>"; };
+		F858B29E2470F33700BA4133 /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		F8772ADC246D896B00F0E7BB /* ProxyAutoConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyAutoConfigUtil.swift; sourceTree = "<group>"; };
 		F87F29C42466EFB30054EF26 /* ProxyConfigUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyConfigUtil.swift; sourceTree = "<group>"; };
 		F8A294CC2467B90D00C905D7 /* start-cli-go-to-net.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-cli-go-to-net.sh"; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				BD16C9C2246E5CC600F5523D /* WindowControllerUtil.swift */,
 				BD16C9F8246E8A7700F5523D /* WebServerUtil.swift */,
 				F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */,
+				F858B29E2470F33700BA4133 /* CommonUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				BD651330246D126C00CC0354 /* ServerEditorWindowController.swift in Sources */,
 				BDB27CC82466968D00DAD8C9 /* AppDelegate.swift in Sources */,
 				BD65132B246CEEA600CC0354 /* PreferencesWindowController.swift in Sources */,
+				F858B29F2470F33700BA4133 /* CommonUtil.swift in Sources */,
 				F8772ADD246D896B00F0E7BB /* ProxyAutoConfigUtil.swift in Sources */,
 				BD16C9F9246E8A7700F5523D /* WebServerUtil.swift in Sources */,
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
