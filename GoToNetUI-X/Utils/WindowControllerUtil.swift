@@ -19,6 +19,8 @@ class WindowControllerUtil : NSObject {
     
     private var customPACWindow : CustomPACWindowController!
     
+    private var aboutWindow : AboutWindowController!
+    
     private override init() {
         super.init()
     }
@@ -61,6 +63,20 @@ class WindowControllerUtil : NSObject {
         
         self.customPACWindow = CustomPACWindowController(windowNibName: NSNib.Name("CustomPACWindow"))
         self.customPACWindow.showWindow(parent)
+        
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    /**
+     打开关于窗口
+     */
+    func openAboutWindow(_ parent: Any?) {
+        if nil != self.aboutWindow {
+            self.aboutWindow.close()
+        }
+        
+        self.aboutWindow = AboutWindowController(windowNibName: NSNib.Name("AboutWindow"))
+        self.aboutWindow.showWindow(parent)
         
         NSApp.activate(ignoringOtherApps: true)
     }
