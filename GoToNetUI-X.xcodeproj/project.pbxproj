@@ -26,6 +26,8 @@
 		BDB27CD22466968F00DAD8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDB27CD02466968F00DAD8C9 /* Main.storyboard */; };
 		BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D002466C4C000DAD8C9 /* constants.swift */; };
 		BDB27D0F246BC47900DAD8C9 /* NetworkConfigUitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */; };
+		BDDCB2BA2473EAB6006E9E68 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDCB2B82473EAB6006E9E68 /* AboutWindowController.swift */; };
+		BDDCB2BB2473EAB6006E9E68 /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDDCB2B92473EAB6006E9E68 /* AboutWindow.xib */; };
 		F82DA2A9246EE3580078921D /* privoxy in Resources */ = {isa = PBXBuildFile; fileRef = F82DA29B246EE3570078921D /* privoxy */; };
 		F82DA2AA246EE3580078921D /* privoxy.template.config in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A4246EE3570078921D /* privoxy.template.config */; };
 		F82DA2AC246EE3580078921D /* install-privoxy.sh in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A6246EE3580078921D /* install-privoxy.sh */; };
@@ -133,6 +135,8 @@
 		BDB27CD42466968F00DAD8C9 /* GoToNetUI_X.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoToNetUI_X.entitlements; sourceTree = "<group>"; };
 		BDB27D002466C4C000DAD8C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigUitl.swift; sourceTree = "<group>"; };
+		BDDCB2B82473EAB6006E9E68 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
+		BDDCB2B92473EAB6006E9E68 /* AboutWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutWindow.xib; sourceTree = "<group>"; };
 		F82DA29B246EE3570078921D /* privoxy */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = privoxy; sourceTree = "<group>"; };
 		F82DA2A4246EE3570078921D /* privoxy.template.config */ = {isa = PBXFileReference; lastKnownFileType = text; path = privoxy.template.config; sourceTree = "<group>"; };
 		F82DA2A6246EE3580078921D /* install-privoxy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-privoxy.sh"; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				BD65132F246D126C00CC0354 /* ServerEditorWindowController.swift */,
 				BD16C9C0246E4B5200F5523D /* CustomPACWindow.xib */,
 				BD16C9BE246E4B4200F5523D /* CustomPACWindowController.swift */,
+				BDDCB2B82473EAB6006E9E68 /* AboutWindowController.swift */,
+				BDDCB2B92473EAB6006E9E68 /* AboutWindow.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 				F858B29C24704EAD00BA4133 /* install-network-helper.sh in Resources */,
 				F858B29A24704E5B00BA4133 /* network-helper in Resources */,
 				F82DA2A9246EE3580078921D /* privoxy in Resources */,
+				BDDCB2BB2473EAB6006E9E68 /* AboutWindow.xib in Resources */,
 				F82DA2AA246EE3580078921D /* privoxy.template.config in Resources */,
 				F82DA2AC246EE3580078921D /* install-privoxy.sh in Resources */,
 				F82DA2AD246EE3580078921D /* start-privoxy.sh in Resources */,
@@ -454,6 +461,7 @@
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
 				BD16C9BF246E4B4200F5523D /* CustomPACWindowController.swift in Sources */,
 				F82DA2B1246EE5D10078921D /* PrivoxyConfigUtil.swift in Sources */,
+				BDDCB2BA2473EAB6006E9E68 /* AboutWindowController.swift in Sources */,
 				F8A294DD2467EE1200C905D7 /* ServerConfigManagerUtil.swift in Sources */,
 				BD16C9C3246E5CC600F5523D /* WindowControllerUtil.swift in Sources */,
 				F87F29C52466EFB30054EF26 /* ProxyConfigUtil.swift in Sources */,
