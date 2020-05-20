@@ -17,3 +17,6 @@ let NotifyPreferencesChange = Notification.Name("NotifyPreferencesChange")
 let NotifyServerConfigListChange = Notification.Name("NotifyServerConfigListChange")
 let NotifyPACRuleChange = Notification.Name("NotifyPACRuleChange")
 let NotifyPACUpdate = Notification.Name("NotifyPACUpdate")
+
+let AppVersion = "v0.2.0"
+let CliVersion = "v0.2.0"

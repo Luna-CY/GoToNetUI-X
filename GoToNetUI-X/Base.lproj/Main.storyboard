@@ -762,6 +762,12 @@
                                 <action selector="openLogControl:" target="Voe-Tx-rLC" id="Vw7-vO-EbW"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="关于此软件" id="yyz-qW-jot">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="about:" target="Voe-Tx-rLC" id="Xd3-62-2HO"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="HMr-nV-FUm"/>
                         <menuItem title="退出" keyEquivalent="q" id="KJl-Iw-lyG">
                             <connections>

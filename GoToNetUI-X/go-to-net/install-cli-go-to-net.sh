@@ -6,6 +6,8 @@ rp="$HOME/Library/Application Support/$app"
 mkdir -p "$rp"
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
-cp -f ./cli-go-to-net "$rp/cli-go-to-net"
+rm -f "$rp/cli-go-to-net"
+cp -f ./cli-go-to-net "$rp/cli-go-to-net-$1"
+ln -s "$rp/cli-go-to-net-$1" "$rp/cli-go-to-net"
 
 echo done

@@ -28,12 +28,12 @@ class ProxyConfigUtil : NSObject {
      安装cli-go-to-net
      */
     func install() -> Bool {
-        if self.manager.fileExists(atPath: self.cli) {
+        if self.manager.fileExists(atPath: self.cli + "-" + CliVersion) {
             return true
         }
         
         let path = self.bundle.path(forResource: "install-cli-go-to-net.sh", ofType: nil)
-        let task = Process.launchedProcess(launchPath: path!, arguments: [""])
+        let task = Process.launchedProcess(launchPath: path!, arguments: [CliVersion])
         
         task.waitUntilExit()
         if task.terminationStatus == 0 {

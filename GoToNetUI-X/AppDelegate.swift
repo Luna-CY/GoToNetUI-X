@@ -284,6 +284,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     /**
+     打开关于窗口
+     */
+    @IBAction func about(_ sender: Any) {
+        WindowControllerUtil.default.openAboutWindow(self)
+    }
+    
+    /**
      注册全局配置字典
      */
     func registerGlobalConfig() {
