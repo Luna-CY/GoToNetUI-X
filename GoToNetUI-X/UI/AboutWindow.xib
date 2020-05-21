@@ -10,6 +10,7 @@
                 <outlet property="git" destination="JuT-mO-OfA" id="1pw-4L-aq4"/>
                 <outlet property="icon" destination="GpL-iL-V8o" id="JqP-uA-KnT"/>
                 <outlet property="iconAuthor" destination="afc-0l-dtF" id="oXc-hj-lya"/>
+                <outlet property="version" destination="hTl-7x-5DD" id="UFE-xs-cMg"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>

@@ -12,6 +12,8 @@ class AboutWindowController: NSWindowController {
     
     @IBOutlet weak var icon: NSImageView!
     
+    @IBOutlet weak var version: NSTextField!
+    
     @IBOutlet weak var git: NSTextField!
     
     @IBOutlet weak var iconAuthor: NSTextField!
@@ -20,6 +22,7 @@ class AboutWindowController: NSWindowController {
         super.windowDidLoad()
 
         self.icon.image = NSImage(named: "About")
+        self.version.stringValue = AppVersion
         
         self.git.textColor = .linkColor
         self.git.backgroundColor = .clear
