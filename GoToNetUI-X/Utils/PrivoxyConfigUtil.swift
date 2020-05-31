@@ -55,7 +55,7 @@ class PrivoxyConfigUtil : NSObject {
             return false
         }
         
-        let logFilePath = NSHomeDirectory() + "/Library/Logs/xin.lua.privoxy.log"
+        let logFilePath = NSHomeDirectory() + "/Library/Logs/xin.luna.privoxy.log"
         let plistFilepath = LaunchAgentDir + self.plist
         
         if !self.manager.fileExists(atPath: LaunchAgentDir) {
