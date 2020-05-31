@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         self.statusBarItem.menu = mainMenu
         
         if let button = self.statusBarItem.button {
-            button.image = NSImage(named: "IconOff")
+            button.image = NSImage(named: "dis-connect")
         }
         
         self.pacModeItem.state = "auto" == UserDefaults.standard.string(forKey: "runningMode") ? .on : .off
@@ -141,6 +141,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
             
             UserDefaults.standard.set("auto", forKey: "runningMode")
+            if let button = self.statusBarItem.button {
+                button.image = NSImage(named: "mode-a")
+            }
             WebServerUtil.default.sync()
             
             self.globalModeItem.state = .off
@@ -174,6 +177,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
             
             UserDefaults.standard.set("global", forKey: "runningMode")
+            if let button = self.statusBarItem.button {
+                button.image = NSImage(named: "mode-g")
+            }
             WebServerUtil.default.sync()
             
             self.pacModeItem.state = .off
@@ -205,6 +211,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
             
             UserDefaults.standard.set("manual", forKey: "runningMode")
+            if let button = self.statusBarItem.button {
+                button.image = NSImage(named: "mode-m")
+            }
             WebServerUtil.default.sync()
             
             self.pacModeItem.state = .off
@@ -419,7 +428,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         self.closeServiceItem.isHidden = false
         
         if let button = self.statusBarItem.button {
-            button.image = NSImage(named: "IconOn")
+            switch UserDefaults.standard.string(forKey: "runningMode")! {
+            case "auto":
+                button.image = NSImage(named: "mode-a")
+            case "global":
+                button.image = NSImage(named: "mode-g")
+            case "manual":
+                button.image = NSImage(named: "mode-m")
+            default:
+                break
+            }
         }
     }
     
@@ -433,7 +451,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         self.startServiceItem.isHidden = false
         
         if let button = self.statusBarItem.button {
-            button.image = NSImage(named: "IconOff")
+            button.image = NSImage(named: "dis-connect")
         }
     }
     
