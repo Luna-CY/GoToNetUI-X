@@ -18,5 +18,5 @@ let NotifyServerConfigListChange = Notification.Name("NotifyServerConfigListChan
 let NotifyPACRuleChange = Notification.Name("NotifyPACRuleChange")
 let NotifyPACUpdate = Notification.Name("NotifyPACUpdate")
 
-let AppVersion = "v2.0.0"
-let CliVersion = "v2.0.0"
+let AppVersion = "v2.0.1"
+let CliVersion = "v2.0.1"
