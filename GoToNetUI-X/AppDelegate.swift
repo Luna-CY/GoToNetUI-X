@@ -307,6 +307,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         defaults.register(defaults: [
             "isStarted": false,
             "startServiceOnProgram": false,
+            "startServiceOnLogin": false,
             "runningMode": "manual",
             "selectedServerName": "",
             "socks.listen": "127.0.0.1",
@@ -400,6 +401,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
      选择服务器配置
      */
     @IBAction func selectServer(_ sender: NSMenuItem) {
+        let current = UserDefaults.standard.string(forKey: "selectedServerName")
+        if sender.identifier?.rawValue == current {
+            return
+        }
+        
         UserDefaults.standard.set(sender.identifier?.rawValue, forKey: "selectedServerName")
         self.startServiceItem.action = #selector(AppDelegate.startServiceAction)
         

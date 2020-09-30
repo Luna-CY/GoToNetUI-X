@@ -10,6 +10,8 @@ import Cocoa
 
 class PreferencesWindowController: NSWindowController {
 
+    @IBOutlet weak var startServiceOnLogin: NSButton!
+    
     @IBOutlet weak var startServiceOnProgram: NSButton!
     
     @IBOutlet weak var localAddr: NSTextField!
@@ -30,6 +32,8 @@ class PreferencesWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
+        
+        self.startServiceOnLogin.state = UserDefaults.standard.bool(forKey: "startServiceOnLogin") ? .on : .off
         
         self.startServiceOnProgram.state = UserDefaults.standard.bool(forKey: "startServiceOnProgram") ? .on : .off
         
@@ -56,6 +60,23 @@ class PreferencesWindowController: NSWindowController {
         
         if sender.state == .off {
             UserDefaults.standard.set(false, forKey: "startServiceOnProgram")
+        }
+    }
+    
+    /**
+     切换开机启动选项
+     */
+    @IBAction func switchStartOnLogin(_ sender: NSButton) {
+        if sender.state == .on {
+            if RunAtLoadUtil.default.enable() {
+                UserDefaults.standard.set(true, forKey: "startServiceOnLogin")
+            }
+        }
+        
+        if sender.state == .off {
+            if RunAtLoadUtil.default.disable() {
+                UserDefaults.standard.set(false, forKey: "startServiceOnLogin")
+            }
         }
     }
     
