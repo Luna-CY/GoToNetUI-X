@@ -1,6 +1,6 @@
 # GoToNetUI-X
 
-https://gitee.com/Luna-CY/go-to-internet 项目的MacOS客户端
+https://github.com/Luna-CY/go-to-internet 项目的MacOS客户端
 
 #### 安装教程
 
