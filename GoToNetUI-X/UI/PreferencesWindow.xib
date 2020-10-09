@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +16,7 @@
                 <outlet property="localAddr" destination="3Lu-B5-Z6H" id="Fem-7h-SpH"/>
                 <outlet property="localPort" destination="Yln-0m-G5H" id="W8w-XQ-4gz"/>
                 <outlet property="pacPort" destination="RJI-nV-dk7" id="YTJ-Ga-QxM"/>
+                <outlet property="startServiceOnLogin" destination="rLn-0u-P0r" id="flO-El-WvA"/>
                 <outlet property="startServiceOnProgram" destination="3md-xe-0ph" id="WtS-3e-VXF"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="cn8-s4-I3P"/>
             </connections>
@@ -51,10 +53,13 @@
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLn-0u-P0r">
                         <rect key="frame" x="18" y="347" width="102" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="是否开机启动" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="WFt-LW-Jc2">
+                        <buttonCell key="cell" type="check" title="是否开机启动" bezelStyle="regularSquare" imagePosition="left" inset="2" id="WFt-LW-Jc2">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="switchStartOnLogin:" target="-2" id="3B8-Jz-abt"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3md-xe-0ph">
                         <rect key="frame" x="18" y="320" width="273" height="18"/>

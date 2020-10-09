@@ -83,6 +83,19 @@ class ProxyConfigUtil : NSObject {
     }
     
     /**
+     发送用户通知
+     */
+    private func notify(_ content: String) {
+        NotificationCenter.default.post(name: NotifyPACUpdate, object: nil)
+        
+        let message = NSUserNotification()
+        message.title = "服务切换通知"
+        message.subtitle = content
+        
+        NSUserNotificationCenter.default.deliver(message)
+    }
+    
+    /**
      启动服务
      */
     private func start() -> Bool {
@@ -132,6 +145,8 @@ class ProxyConfigUtil : NSObject {
                 return false
             }
             
+            self.notify("关闭服务成功")
+            
             break
         case "start":
             if "" == UserDefaults.standard.string(forKey: "selectedServerName")! {
@@ -157,6 +172,8 @@ class ProxyConfigUtil : NSObject {
             if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.set("global") {
                 return false
             }
+            
+            self.notify("启动服务成功")
             
             break
         case "restart":
@@ -187,6 +204,8 @@ class ProxyConfigUtil : NSObject {
             if "global" == UserDefaults.standard.string(forKey: "runningMode") && !NetworkConfigUtil.default.set("global") {
                 return false
             }
+            
+            self.notify("重启服务成功")
             
             break
         default:

@@ -28,6 +28,7 @@
 		BDB27D0F246BC47900DAD8C9 /* NetworkConfigUitl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */; };
 		BDDCB2BA2473EAB6006E9E68 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDCB2B82473EAB6006E9E68 /* AboutWindowController.swift */; };
 		BDDCB2BB2473EAB6006E9E68 /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDDCB2B92473EAB6006E9E68 /* AboutWindow.xib */; };
+		BDF2D0E3252485AC00BAFB2A /* RunAtLoadUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF2D0E2252485AC00BAFB2A /* RunAtLoadUtil.swift */; };
 		F82DA2A9246EE3580078921D /* privoxy in Resources */ = {isa = PBXBuildFile; fileRef = F82DA29B246EE3570078921D /* privoxy */; };
 		F82DA2AA246EE3580078921D /* privoxy.template.config in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A4246EE3570078921D /* privoxy.template.config */; };
 		F82DA2AC246EE3580078921D /* install-privoxy.sh in Resources */ = {isa = PBXBuildFile; fileRef = F82DA2A6246EE3580078921D /* install-privoxy.sh */; };
@@ -137,6 +138,7 @@
 		BDB27D0E246BC47900DAD8C9 /* NetworkConfigUitl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigUitl.swift; sourceTree = "<group>"; };
 		BDDCB2B82473EAB6006E9E68 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		BDDCB2B92473EAB6006E9E68 /* AboutWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutWindow.xib; sourceTree = "<group>"; };
+		BDF2D0E2252485AC00BAFB2A /* RunAtLoadUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunAtLoadUtil.swift; sourceTree = "<group>"; };
 		F82DA29B246EE3570078921D /* privoxy */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = privoxy; sourceTree = "<group>"; };
 		F82DA2A4246EE3570078921D /* privoxy.template.config */ = {isa = PBXFileReference; lastKnownFileType = text; path = privoxy.template.config; sourceTree = "<group>"; };
 		F82DA2A6246EE3580078921D /* install-privoxy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-privoxy.sh"; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				BD16C9F8246E8A7700F5523D /* WebServerUtil.swift */,
 				F82DA2B0246EE5D10078921D /* PrivoxyConfigUtil.swift */,
 				F858B29E2470F33700BA4133 /* CommonUtil.swift */,
+				BDF2D0E2252485AC00BAFB2A /* RunAtLoadUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -334,7 +337,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Luna;
 				TargetAttributes = {
 					BDB27CC32466968D00DAD8C9 = {
@@ -458,6 +461,7 @@
 				F858B29F2470F33700BA4133 /* CommonUtil.swift in Sources */,
 				F8772ADD246D896B00F0E7BB /* ProxyAutoConfigUtil.swift in Sources */,
 				BD16C9F9246E8A7700F5523D /* WebServerUtil.swift in Sources */,
+				BDF2D0E3252485AC00BAFB2A /* RunAtLoadUtil.swift in Sources */,
 				BDB27D012466C4C000DAD8C9 /* constants.swift in Sources */,
 				BD16C9BF246E4B4200F5523D /* CustomPACWindowController.swift in Sources */,
 				F82DA2B1246EE5D10078921D /* PrivoxyConfigUtil.swift in Sources */,
@@ -509,6 +513,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -569,6 +574,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -613,7 +619,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "xin.luna.GoToNetUI-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -638,7 +644,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "xin.luna.GoToNetUI-X";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
